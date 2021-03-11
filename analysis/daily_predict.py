@@ -70,6 +70,7 @@ def get_fin_data(stock, buy_time):
         pass # TODO
 
     # go backwards and save previous stock prices
+    print("Buy stock:",stock_prices[-1])
     for back_idx in range(len(stock_prices)-1, len(stock_prices)-num_backwards, -1):
         stock_features.append(stock_prices[back_idx])
     
@@ -151,14 +152,15 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
 
     
 
-hyp_param = [9, 13, "dax", ["cnbc_finance"]]
+#hyp_param = [9, 13, "dax", ["cnbc_finance"]]
+hyp_param = [13, 18, "nasdaq", ["cnn_news", "investing_economy", "faz_wirtschaft", "bbc_world", "faz_finanzen", "investing_world"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # train classifier
 xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
 
 # looping every day until buy time is reached
-buy_time = [22,34]
+buy_time = [13,00]
 sell_time = hyp_param[1]
 while(True):
     # getting current date and time
@@ -168,28 +170,47 @@ while(True):
     print("getting datetime:", date_time)
 
     # buying
-    print("buying if", int(buy_time[0]),"==", int(date_time_arr[3]),"and", int(
-        buy_time[1]), "==", int(date_time_arr[4]))
+    #print("buying if", int(buy_time[0]),"==", int(date_time_arr[3]),"and", int(
+    #    buy_time[1]), "==", int(date_time_arr[4]))
     if (buy_time[0]-int(date_time_arr[3]) == 0) and (buy_time[1]-int(date_time_arr[4]) <= 0):
         # make daily prediction
         prediction = daily_predict(xgb_classifier, countVector, drop_idx, hyp_param[0], hyp_param[2], hyp_param[3])
         if prediction[0] > 0:
             # buy long
-            pass
+            buy_sign = 1
+            print("buying long")
         else:
             # buy short
-            pass
-        print("buying done, sleeping for 9999 seconds")
-        time.sleep(9999) # sleep for two hours
+            buy_sign = -1
+            print("buying short")
+        print("buying done, sleeping for 3999 seconds")
+        time.sleep(3999) # sleep for one hour
 
     # selling
-    print("selling if",sell_time,"==", int(date_time_arr[3]))
+    #print("selling if",sell_time,"==", int(date_time_arr[3]))
     if sell_time-int(date_time_arr[3]) == 0:
         # selling position
+        # logging results
+        all_stock_data = get_stock_prizes()
+        curr_stock = all_stock_data[hyp_param[2]]
+        # getting actual buy and sell price
+        for back_idx in range(len(curr_stock)-1, len(curr_stock)-10, -1):
+            print("curr_stock_price:",back_idx, all_stock_data["times"][back_idx],curr_stock[back_idx])
+            if(all_stock_data["times"][back_idx].hour==hyp_param[1]):
+                sell_price = curr_stock[back_idx]
+                print("sell_stock", sell_price)
+            if(all_stock_data["times"][back_idx].hour==hyp_param[0]):
+                buy_price = curr_stock[back_idx]
+                print("buy_price recalc", buy_price)
+                break
+        win_percent = ((sell_price - buy_price)/buy_price) * buy_sign
+        with open("daily_bets.txt", 'a') as file_object:
+            out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+"\n"
+            file_object.write(out_str)
         time.sleep(9999) # sleep for two hours
 
     # wait and loop
-    print("sleeping for 30s")
+    #print("sleeping for 30s")
     time.sleep(30)
 
 

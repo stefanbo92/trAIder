@@ -28,8 +28,12 @@ def upload_news():
             print("uploading file:", pathname)
             process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
             output, error = process.communicate()
+    
+    # uploading daily results
+    bashCommand = "/home/pi/Dropbox-Uploader/dropbox_uploader.sh upload /home/pi/trAIder/trAIder/analysis/daily_bets.txt analysis/daily_bets.txt"
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
             
-
 print("start uploading loop")
 upload_time = "20_00"
 two_hours = 60 * 60 * 2

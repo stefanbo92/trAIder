@@ -5,3 +5,8 @@ Average Gain: 0.428, Accuracy: 0.85 (13 days) --> Hyperparameters: 13, 18, "sp50
 Average Gain: 0.52, Accuracy: 0.71 (35 days) --> Hyperparameters: 11, 18, "dow", ["cnbc_business", "investing_stock", "marketwatch_topstories", "bbc_world", "welt_wirtschaft", "investing_world", "cnn_world", "faz_finanzen", "cnn_news"]
 Average Gain: 0.27, Accuracy: 0.83 (42 days) --> Hyperparameters: 13, 18, "sp500", ["cnbc_finance", "wsj_world", "bbc_business", "cnbc_business", "bbc_world", "faz_finanzen", "cnn_news", "investing_economy", "cnn_money", "investing_stock"]
 ----
+Average Gain: 0.223, Accuracy: 0.76 (42 days) --> Hyperparameters: 13, 18, "sp500", ["cnn_news", "faz_wirtschaft"]
+Average Gain: 0.534, Accuracy: 0.64 (42 days) --> Hyperparameters: 15, 18, "dow", ["cnn_news", "faz_finanzen", "spiegel_schlagzeilen", "cnbc_economy", "cnn_money", "wsj_world", "welt_wirtschaft", "cnbc_finance", "wsj_markets", "cnn_world"]
+Average Gain: 0.812, Accuracy: 0.86 (42 days) --> Hyperparameters: 13, 18, "nasdaq", ["cnn_news", "investing_economy", "faz_wirtschaft", "bbc_world", "faz_finanzen", "investing_world"]
+----
+
