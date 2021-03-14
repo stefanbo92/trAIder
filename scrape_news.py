@@ -33,7 +33,7 @@ def scrape_news(name, url, use_summary = True):
     news_file = open(pathname, 'w')
 
     # getting RSS feed
-    print("getting RSS feed...")
+    print("getting RSS feed...", url)
     rss_feed = feedparser.parse(url)
     print("received RSS feed")
 
@@ -42,19 +42,26 @@ def scrape_news(name, url, use_summary = True):
     for post in rss_feed.entries:
         #print(post)
         summary = "xxx"
+        title = "xxx"
         # replaceing "," for .csv compability
-        title = post.title.replace(", ", " ").replace(",", ".").replace(
+        try:
+            title = post.title.replace(", ", " ").replace(",", ".").replace(
             "&", " and ").replace("amp;", "").replace("\n", "")
+        except:
+            print("no title there")
         if(use_summary):
-            summary = post.summary.replace(", ", " ").replace(",", ".").replace(
-                "&", " and ").replace("amp;", "").replace("\n", "")
+            try:
+                summary = post.summary.replace(", ", " ").replace(",", ".").replace(
+                    "&", " and ").replace("amp;", "").replace("\n", "")
 
-            # removing html code in marketwatch
-            if ("<div class" in summary):
-                summary = summary[:summary.find("<div class")]
-            # removing html code in faz
-            if ("<img alt" in summary):
-                summary = summary[summary.find("<p>")+3:-4]
+                # removing html code in marketwatch
+                if ("<div class" in summary):
+                    summary = summary[:summary.find("<div class")]
+                # removing html code in faz
+                if ("<img alt" in summary):
+                    summary = summary[summary.find("<p>")+3:-4]
+            except:
+                print("no summary there")
 
         print(title)
         print(summary)
