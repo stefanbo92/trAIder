@@ -151,7 +151,7 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
     return prediction
 
     
-
+print("start training")
 #hyp_param = [9, 13, "dax", ["cnbc_finance"]]
 hyp_param = [13, 18, "nasdaq", ["cnn_news", "investing_economy", "faz_wirtschaft", "bbc_world", "faz_finanzen", "investing_world"]]
 # getting train data
@@ -160,11 +160,15 @@ get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
 
 # looping every day until buy time is reached
+print("staring every day loop")
 buy_time = [13,00]
 sell_time = hyp_param[1]
 while(True):
     # getting current date and time
     today = datetime.now()
+    if today.weekday() > 4: # skip weekend
+        time.sleep(9999)
+        continue
     date_time = today.strftime("%Y_%m_%d_%H_%M")
     date_time_arr = date_time.split("_")
     print("getting datetime:", date_time)
@@ -211,7 +215,7 @@ while(True):
 
     # wait and loop
     #print("sleeping for 30s")
-    time.sleep(30)
+    time.sleep(60)
 
 
 
