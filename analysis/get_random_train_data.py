@@ -37,6 +37,7 @@ def get_random_hyperparam():
 
 def train_random():
     best_gain = 0.20
+    total_accuracy = []
     for i in range(1000):
         print("training round", i)
 
@@ -50,6 +51,8 @@ def train_random():
         if gains is None: # if no calculations could be performed
             continue
         average_gain = np.array(gains).sum()/len(gains)
+        total_accuracy.append(accuracy)
+        print("average total accuracy:",np.mean(np.array(total_accuracy)),"(",len(total_accuracy),"samples )")
 
         # save the best gains
         if average_gain > best_gain:
