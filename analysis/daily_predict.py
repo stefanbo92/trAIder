@@ -161,7 +161,7 @@ xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param
 
 # looping every day until buy time is reached
 print("staring every day loop")
-buy_time = [13,00]
+buy_time = [13,5]
 sell_time = hyp_param[1]
 while(True):
     # getting current date and time
@@ -194,7 +194,9 @@ while(True):
     #print("selling if",sell_time,"==", int(date_time_arr[3]))
     if sell_time-int(date_time_arr[3]) == 0:
         # selling position
+	    print("selling position")
         # logging results
+	    time.sleep(200) # wait until latest prices were written to file 
         all_stock_data = get_stock_prizes()
         curr_stock = all_stock_data[hyp_param[2]]
         # getting actual buy and sell price
@@ -207,7 +209,7 @@ while(True):
                 buy_price = curr_stock[back_idx]
                 print("buy_price recalc", buy_price)
                 break
-        win_percent = ((sell_price - buy_price)/buy_price) * buy_sign
+        win_percent = ((sell_price - buy_price)/buy_price) * buy_sign * 100
         with open("daily_bets.txt", 'a') as file_object:
             out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+"\n"
             file_object.write(out_str)
