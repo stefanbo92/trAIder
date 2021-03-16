@@ -78,6 +78,8 @@ def count_all_words():
                     for line in prices_file:
                         saved_news.append(line)
                         line_arr = line.split(",")
+                        if(len(line_arr)<4): # invalid line
+                            continue
                         all_news += line_arr[2]+" "+line_arr[3]+" "
 
     word_freq = wordFrequency(all_news)
