@@ -39,7 +39,10 @@ def kfold_train_test(k_folds):
         # train on data and predict
         predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
                                     val_text_features, val_numeric_features, val_lables)
-
+        if (len(predictions)==0):
+            print("YOLO predictions", predictions)
+            print(len(text_features), len(numeric_features), len(lables))
+            return None, None
         predictions_combined.append(predictions)
 
         # evaluation
