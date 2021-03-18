@@ -40,8 +40,10 @@ def get_random_hyperparam():
 
 
 def train_random():
-    best_gain = 0.20
+    best_gain = 0.15
+    best_acc = 0.65
     total_accuracy = []
+    total_gain = []
     for i in range(1000):
         print("training round", i)
 
@@ -56,10 +58,11 @@ def train_random():
             continue
         average_gain = np.array(gains).sum()/len(gains)
         total_accuracy.append(accuracy)
-        print("average total accuracy:",np.mean(np.array(total_accuracy)),"(",len(total_accuracy),"samples )")
+        total_gain.append(average_gain)
+        print("average total accuracy:",np.mean(np.array(total_accuracy)),"av. gain:",np.mean(np.array(total_gain)),"(",len(total_accuracy),"samples )")
 
         # save the best gains
-        if average_gain > best_gain:
+        if average_gain > best_gain and accuracy > best_acc:
             # Open the file in write mode and write best gain with hyper params
             with open("best_hyp_param", 'a') as file_object:
                 hyp_string = str(hyp_param[0])+", " + \
