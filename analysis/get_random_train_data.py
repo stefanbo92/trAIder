@@ -16,9 +16,13 @@ def get_random_hyperparam():
     sell_time = trade_times[rand_sell]
 
     # select index
-    indeces = ["dax", "sp500", "dow", "nasdaq", "nikkei"]
+    # indeces = ["dax", "sp500", "dow", "nasdaq", "nikkei"]
+    indeces = ["dax", "sp500", "dow", "nasdaq", "dax", "dax", "dax"]
     rand_index = randint(0, 4)
     stock = indeces[rand_index]
+    if stock != "dax": # only buy and sell when market is open
+        buy_time = 16
+        sell_time = 18
 
     # news
     news_sites = ["bbc_business", "cnbc_world", "faz_news", "investing_world", "wsj_markets",
