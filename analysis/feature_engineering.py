@@ -71,7 +71,7 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
     valDataset = valDataset.toarray()
 
     # dropping features with low occurence
-    drop_thresh = 3
+    drop_thresh = 10
     drop_idx = []
     for col_idx in range(trainDataset.shape[1]):
         curr_col = trainDataset[:, col_idx]
