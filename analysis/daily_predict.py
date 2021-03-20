@@ -96,7 +96,7 @@ def train_classifier(buy_time, stock, news_sites):
     trainDataset = trainDataset.toarray()
 
     # dropping features with low occurence
-    drop_thresh = 3
+    drop_thresh = 10
     drop_idx = []
     for col_idx in range(trainDataset.shape[1]):
         curr_col = trainDataset[:, col_idx]
@@ -153,7 +153,7 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
     
 print("start training")
 #hyp_param = [9, 13, "dax", ["cnbc_finance"]]
-hyp_param = [13, 18, "nasdaq", ["cnn_news", "investing_economy", "faz_wirtschaft", "bbc_world", "faz_finanzen", "investing_world"]]
+hyp_param = [16, 18, "nasdaq", ["cnn_world", "faz_news", "marketwatch_topstories", "investing_world"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # train classifier
@@ -161,7 +161,7 @@ xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param
 
 # looping every day until buy time is reached
 print("staring every day loop")
-buy_time = [13,5]
+buy_time = [16,5]
 sell_time = hyp_param[1]
 while(True):
     # getting current date and time
@@ -194,9 +194,9 @@ while(True):
     #print("selling if",sell_time,"==", int(date_time_arr[3]))
     if sell_time-int(date_time_arr[3]) == 0:
         # selling position
-	    print("selling position")
+        print("selling position")
         # logging results
-	    time.sleep(200) # wait until latest prices were written to file 
+        time.sleep(200) # wait until latest prices were written to fill
         all_stock_data = get_stock_prizes()
         curr_stock = all_stock_data[hyp_param[2]]
         # getting actual buy and sell price
