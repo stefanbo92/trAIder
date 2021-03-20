@@ -1,3 +1,4 @@
 data/
 analysis/ml_data/
 analysis/__pycache__/
+analysis/daily_bets.txt

@@ -1,12 +1,9 @@
-Average Gain: 0.359, Accuracy: 0.77 (30 days) --> Hyperparameters: 9, 18, "nasdaq", ["investing_world", "faz_finanzen", "welt_wirtschaft", "investing_stock", "cnn_money", "wsj_world"]
-----
-Average Gain: 0.428, Accuracy: 0.85 (13 days) --> Hyperparameters: 13, 18, "sp500", ["cnbc_business", "cnbc_world", "bbc_world", "investing_economy", "spiegel_schlagzeilen", "faz_wirtschaft", "faz_news", "marketwatch_topstories"]
-----
-Average Gain: 0.52, Accuracy: 0.71 (35 days) --> Hyperparameters: 11, 18, "dow", ["cnbc_business", "investing_stock", "marketwatch_topstories", "bbc_world", "welt_wirtschaft", "investing_world", "cnn_world", "faz_finanzen", "cnn_news"]
-Average Gain: 0.27, Accuracy: 0.83 (42 days) --> Hyperparameters: 13, 18, "sp500", ["cnbc_finance", "wsj_world", "bbc_business", "cnbc_business", "bbc_world", "faz_finanzen", "cnn_news", "investing_economy", "cnn_money", "investing_stock"]
-----
-Average Gain: 0.223, Accuracy: 0.76 (42 days) --> Hyperparameters: 13, 18, "sp500", ["cnn_news", "faz_wirtschaft"]
-Average Gain: 0.534, Accuracy: 0.64 (42 days) --> Hyperparameters: 15, 18, "dow", ["cnn_news", "faz_finanzen", "spiegel_schlagzeilen", "cnbc_economy", "cnn_money", "wsj_world", "welt_wirtschaft", "cnbc_finance", "wsj_markets", "cnn_world"]
-Average Gain: 0.812, Accuracy: 0.86 (42 days) --> Hyperparameters: 13, 18, "nasdaq", ["cnn_news", "investing_economy", "faz_wirtschaft", "bbc_world", "faz_finanzen", "investing_world"]
-----
-
+-----  drop 10 feat, 14.03
+Average Gain: 0.257, Accuracy: 0.84 (49 days) --> Hyperparameters: 9, 15, "dax", ["cnn_world", "cnn_money", "cnbc_business", "wsj_markets", "faz_finanzen", "cnbc_finance", "investing_stock"]
+-----  drop 10 feat, 18.03
+Average Gain: 0.365, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_economy", "cnbc_business", "investing_stock"]
+Average Gain: 0.418, Accuracy: 0.65 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnn_news", "cnbc_business", "cnbc_finance"]
+Average Gain: 0.266, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "nasdaq", ["faz_news", "marketwatch_topstories", "wsj_world"]
+Average Gain: 0.197, Accuracy: 0.67 (49 days) --> Hyperparameters: 16, 18, "sp500", ["investing_economy", "faz_news", "wsj_world", "cnn_money", "cnbc_world", "bbc_world", "spiegel_wirtschaft", "cnn_world", "cnbc_business", "cnn_news"]
+Average Gain: 0.335, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "dow", ["investing_economy", "faz_wirtschaft", "cnbc_business", "investing_world"]
+Average Gain: 0.34, Accuracy: 0.78 (49 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnn_world", "faz_news", "marketwatch_topstories", "investing_world"]
