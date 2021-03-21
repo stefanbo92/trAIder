@@ -31,14 +31,16 @@ def kfold_train_test(k_folds):
 
         train_text_features = np.delete(text_features, slice_index)
         train_numeric_features = np.delete(numeric_features, slice_index, axis=0)
-        train_lables = np.delete(bin_labels, slice_index)
+        train_lables = np.delete(lables, slice_index)
         val_text_features = text_features[slice_index]
         val_numeric_features = numeric_features[slice_index]
         val_lables = bin_labels[slice_index]
+        if USE_REGRESSOR:
+            val_lables = lables[slice_index]
 
         # train on data and predict
         predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
-                                    val_text_features, val_numeric_features, val_lables)
+                                    val_text_features, val_numeric_features)
         if (len(predictions)==0):
             print("YOLO predictions", predictions)
             print(len(text_features), len(numeric_features), len(lables))
@@ -49,8 +51,11 @@ def kfold_train_test(k_folds):
         #print("Val label      :", val_lables)
         #print("Val predictions:", predictions)
         wrong_samples = np.sum(np.abs(np.subtract(val_lables, predictions)))
-        accuracy = (len(val_lables)-wrong_samples)/len(val_lables)
-        print("Accuracy round",train_round,":", accuracy)
+        if(USE_REGRESSOR):
+            print("Average error round",train_round,":", wrong_samples/len(val_lables))
+        else:
+            accuracy = (len(val_lables)-wrong_samples)/len(val_lables)
+            print("Accuracy round",train_round,":", accuracy)
         #report = classification_report(val_lables, predictions)
         #print(report)
     
@@ -61,7 +66,11 @@ def kfold_train_test(k_folds):
     bin_labels = bin_labels[:predictions_combined.shape[0]]
     print("Combined Performance: ")
     
+    if(USE_REGRESSOR):
+        predictions_combined[predictions_combined>0] = 1
+        predictions_combined[predictions_combined<=0] = 0
     wrong_samples = np.sum(np.abs(np.subtract(bin_labels, predictions_combined)))
+    
     accuracy = (len(bin_labels)-wrong_samples)/len(bin_labels)
     print("Accuracy:", round(accuracy,2))
     report = classification_report(bin_labels, predictions_combined)

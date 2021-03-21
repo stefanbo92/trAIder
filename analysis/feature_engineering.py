@@ -7,7 +7,11 @@ import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from sklearn.feature_extraction.text import CountVectorizer
 
-from xgboost import XGBClassifier
+from xgboost import XGBClassifier, XGBRegressor
+
+# PARAMETERS
+DROP_THRESH = 3
+USE_REGRESSOR = False
 
 def get_financial_features(raw_financial_features):
     fin_feat=np.array(raw_financial_features)
@@ -58,7 +62,7 @@ def get_prepared_data():
     return np.array(text_features), numeric_features, lables, bin_labels
 
 def train_predict(train_text_features, train_numeric_features, train_lables, \
-                   val_text_features, val_numeric_features, val_lables):
+                   val_text_features, val_numeric_features):
 
     # creating CountVectorizer
     countVector = CountVectorizer(ngram_range=(2, 2))
@@ -71,15 +75,19 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
     valDataset = valDataset.toarray()
 
     # dropping features with low occurence
-    drop_thresh = 10
     drop_idx = []
     for col_idx in range(trainDataset.shape[1]):
         curr_col = trainDataset[:, col_idx]
-        if(np.sum(curr_col) < drop_thresh):
+        if(np.sum(curr_col) < DROP_THRESH):
             drop_idx.append(col_idx)
     print("dropping", len(drop_idx), "features of", trainDataset.shape[1])
     trainDataset = np.delete(trainDataset, drop_idx, 1)
     valDataset = np.delete(valDataset, drop_idx, 1)
+
+    # making labels binary
+    train_bin_lables = np.copy(train_lables)
+    train_bin_lables[train_lables > 0] = 1
+    train_bin_lables[train_lables <= 0] = 0
 
     # adding numerical features
     add_numerical = True
@@ -88,11 +96,15 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
         valDataset = np.append(valDataset, val_numeric_features ,axis=1)
 
     # training random forstes classifier
-    xgb_classifier = XGBClassifier()
-    xgb_classifier.fit(trainDataset, train_lables)
-
-    # performing predictions on validation dataset
-    predictions = xgb_classifier.predict(valDataset)
+    if(USE_REGRESSOR==False):
+        xgb_classifier = XGBClassifier(max_depth=10) # max_depth=12
+        xgb_classifier.fit(trainDataset, train_bin_lables)
+        # performing predictions on validation dataset
+        predictions = xgb_classifier.predict(valDataset)
+    else: # regressor
+        xgb_regressor = XGBRegressor(objective='reg:squarederror') 
+        xgb_regressor.fit(trainDataset, train_lables)
+        predictions = xgb_regressor.predict(valDataset)
     return predictions
 
 def train_test():
@@ -105,7 +117,7 @@ def train_test():
     n_data = len(bin_labels)
     train_text_features = text_features[:int(n_data*train_split)]
     train_numeric_features = numeric_features[:int(n_data*train_split)]
-    train_lables = bin_labels[:int(n_data*train_split)]
+    train_lables = lables[:int(n_data*train_split)]
     val_text_features = text_features[int(n_data*train_split):]
     val_numeric_features = numeric_features[int(n_data*train_split):]
     val_bin_lables = bin_labels[int(n_data*train_split):]
@@ -113,7 +125,7 @@ def train_test():
 
     # train on data and predict
     predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
-                                    val_text_features, val_numeric_features, val_lables)
+                                    val_text_features, val_numeric_features)
 
     # evaluation
     print("Val label      :", val_bin_lables)

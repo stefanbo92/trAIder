@@ -80,7 +80,7 @@ def train_random():
 
 train_random()
 
-hyp_param = [13, 18, "sp500", ["cnbc_finance", "wsj_world", "bbc_business", "cnbc_business", "bbc_world", "faz_finanzen", "cnn_news", "investing_economy", "cnn_money", "investing_stock"]]
+hyp_param = [16, 18, "nasdaq", ["cnn_world", "faz_news", "marketwatch_topstories", "investing_world"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # training data and calculate average gain
