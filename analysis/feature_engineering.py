@@ -127,9 +127,16 @@ def train_test():
     predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
                                     val_text_features, val_numeric_features)
 
-    # evaluation
-    print("Val label      :", val_bin_lables)
+    # evaluation statistics
     print("Val predictions:", predictions)
+    if(USE_REGRESSOR):
+        print("Regressor mean abs error:", np.mean(np.abs(np.subtract(val_lables, predictions))))
+        predictions[predictions>0] = 1
+        predictions[predictions<=0] = 0
+        print("Val label      :", val_lables)
+        
+    else:
+        print("Val label      :", val_bin_lables)
     wrong_samples = np.sum(np.abs(np.subtract(val_bin_lables, predictions)))
     accuracy = (len(val_bin_lables)-wrong_samples)/len(val_bin_lables)
     print("Accuracy:", accuracy)
