@@ -18,9 +18,10 @@ for result in all_results:
 
 play_money = 1000
 lever = 20
+cost = play_money * lever / 10000
 
 print("-----------------------------------")
 print("Total days played:", len(all_results))
-print("Win accuracy:", win_cnt/len(all_results))
-print("Total gains in percent:", np.sum(np.array(all_results)))
-print("In money:", play_money * lever * np.sum(np.array(all_results))/100, "€")
+print("Win accuracy:", round(win_cnt/len(all_results),3))
+print("Total gains in percent:", round(np.sum(np.array(all_results)),3), "average per day:", round(np.sum(np.array(all_results))/len(all_results),3))
+print("In money:", play_money * lever * np.sum(np.array(all_results))/100, "€ (approx cost:",len(all_results) * cost,")")
