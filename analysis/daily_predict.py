@@ -106,8 +106,7 @@ def train_classifier(buy_time, stock, news_sites):
     trainDataset = np.delete(trainDataset, drop_idx, 1)
 
     # adding numerical features
-    add_numerical = True
-    if add_numerical:
+    if ADD_NUMERICAL:
         trainDataset = np.append(trainDataset, numeric_features ,axis=1)
 
     # training random forest classifier
@@ -140,8 +139,7 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
     predDataset = np.delete(predDataset, drop_idx, 1)
 
     # adding numerical features
-    add_numerical = True
-    if add_numerical:
+    if ADD_NUMERICAL:
         predDataset = np.append(predDataset, latest_numeric_feat ,axis=1)
 
     # predict daily

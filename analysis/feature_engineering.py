@@ -12,6 +12,7 @@ from xgboost import XGBClassifier, XGBRegressor
 # PARAMETERS
 DROP_THRESH = 3
 USE_REGRESSOR = False
+ADD_NUMERICAL = True
 
 def get_financial_features(raw_financial_features):
     fin_feat=np.array(raw_financial_features)
@@ -90,8 +91,7 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
     train_bin_lables[train_lables <= 0] = 0
 
     # adding numerical features
-    add_numerical = True
-    if add_numerical:
+    if ADD_NUMERICAL:
         trainDataset = np.append(trainDataset, train_numeric_features ,axis=1)
         valDataset = np.append(valDataset, val_numeric_features ,axis=1)
 

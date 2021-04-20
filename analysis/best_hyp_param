@@ -64,4 +64,8 @@ Average Gain: 0.233, Accuracy: 0.6 (92 days) --> Hyperparameters: 16, 18, "dow",
 Average Gain: 0.174, Accuracy: 0.78 (92 days) --> Hyperparameters: 15, 18, "dax", ["bbc_business", "cnn_world", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft"]
 Average Gain: 0.233, Accuracy: 0.66 (92 days) --> Hyperparameters: 16, 18, "dow", ["spiegel_schlagzeilen", "wsj_markets", "faz_news", "bbc_world", "faz_wirtschaft", "cnbc_economy", "marketwatch_topstories", "investing_world"]
 Average Gain: 0.126, Accuracy: 0.76 (91 days) --> Hyperparameters: 13, 18, "dax", ["bbc_world", "investing_economy", "cnbc_economy", "spiegel_schlagzeilen", "cnn_money", "marketwatch_topstories"]
---------- classifier, drop20, 17.04 kfold+normal
+--------- classifier, drop20, 17.04 kfold+normal average total accuracy: 0.538376911976912 av. gain: 0.01574847064993825 ( 1000 samples )
+--------- regressor, drop20, 17.04 kfold+normal average total accuracy: 0.527899969990678 av. gain: 0.011739939443228773 ( 904 samples )
+--------- regressor, drop3, 19.04 kfold+normal average total accuracy: 0.5384926963874332 av. gain: 0.023803944755233147 ( 741 samples )
+--------- classifier, drop1000, 20.04 kfold+normal average total accuracy: 0.47953152958152956 av. gain: -0.05496031814848668 ( 1000 samples )
+--------- classifier, drop3, no_numeric_feat, 20.04 kfold+normal
