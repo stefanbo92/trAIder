@@ -22,7 +22,7 @@ class MyXTB:
 			print('Login failed. Error code: {0}'.format(loginResponse['errorCode']))
 			exit()
 
-	def buy_stonks(self):
+	def buy_stonks(self, prediction_str):
 		print("Buying STONKS!")
 
 		# getting data
@@ -31,10 +31,14 @@ class MyXTB:
 		ask_price = curr_symbol["returnData"]["ask"]
 		time_price = curr_symbol["returnData"]["time"]+60000
 		print("ask_price for buying",ask_price,"time:",time_price)
+		if prediction_str == "long":
+			cmd = 0
+		else:
+			cmd = 1
 		
 		# Buy order:
 		TRADE_TRANS_INFO_BUY={
-			"cmd": 0,
+			"cmd": cmd,
 			"customComment": "First transaction",
 			"expiration": time_price,
 			"offset": 0,
@@ -94,23 +98,32 @@ class MyXTB:
 		self.client = None
 	
 	def test_func(self):
+		self.perform_login()
 		# own stuff
 		self.client.execute(baseCommand("getSymbol",dict(symbol="DE30")))
 		#self.client.execute(baseCommand("getCurrentUserData"))
 		#self.client.execute(baseCommand("getMarginTrade",dict(symbol="DE30", volume=1.0)))
 		#self.client.execute(baseCommand("getProfitCalculation",dict(closePrice=15150, cmd=0, openPrice=15000, symbol="DE30",volume=0.05))) # cmd 0->buy, 1->sell
 		#self.client.execute(baseCommand("getTradeRecords",dict(orders=[273180485])))
-		#self.client.execute(baseCommand("getTradesHistory",dict(end=0, start=time_price-60000000)))
+		trade_hist = self.client.execute(baseCommand("getTradesHistory",dict(end=0, start=0)))
+		print("trading history:")
+		for trade in trade_hist["returnData"]:
+			print("order: ",trade["order"]," ",trade["close_timeString"],", profit:", trade["profit"])
 		#curr_time = self.client.execute(baseCommand("getServerTime",dict()))
 		#print("curr_time:", curr_time["returnData"]["time"])
 
+		# logout
+		self.client.disconnect()
+		self.client = None
 
-my_xtb = MyXTB()
-my_xtb.buy_stonks()
-time.sleep(5)
-my_xtb.sell_stonks()
 
-print("finished xtb api")
+#my_xtb = MyXTB()
+#my_xtb.buy_stonks("long")
+#my_xtb.test_func()
+#time.sleep(15)
+#my_xtb.sell_stonks()
+
+#print("finished xtb api")
 
 
 
