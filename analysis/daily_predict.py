@@ -11,6 +11,7 @@ from xgboost import XGBClassifier
 
 from feature_engineering import *
 from get_train_data import *
+from xtb.xtb_api import *
 
 from datetime import datetime
 import time
@@ -161,6 +162,7 @@ xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param
 print("staring every day loop")
 buy_time = [16,5]
 sell_time = hyp_param[1]
+my_xtb = MyXTB()
 while(True):
     # getting current date and time
     today = datetime.now()
@@ -180,10 +182,12 @@ while(True):
         if prediction[0] > 0:
             # buy long
             buy_sign = 1
+            my_xtb.buy_stonks("long")
             print("buying long")
         else:
             # buy short
             buy_sign = -1
+            my_xtb.buy_stonks("short")
             print("buying short")
         print("buying done, sleeping for 3999 seconds")
         time.sleep(3999) # sleep for one hour
@@ -193,6 +197,7 @@ while(True):
     if sell_time-int(date_time_arr[3]) == 0:
         # selling position
         print("selling position")
+        my_xtb.sell_stonks()
         # logging results
         time.sleep(200) # wait until latest prices were written to fill
         all_stock_data = get_stock_prizes()
