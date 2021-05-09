@@ -1,3 +1,8 @@
+import sys
+import os
+path_to_file=__file__[:__file__.find("xtb_api")]
+sys.path.append(path_to_file)
+
 from xAPIConnector import *
 
 # enter your login credentials here
@@ -7,11 +12,12 @@ password = 'xoh18174'
 
 class MyXTB:
 	def __init__(self):
-		# create & connect to RR socket
-		self.client = APIClient()
+		# create empty client
+		self.client = None
 
 	def perform_login(self):
 		if self.client == None:
+			# create & connect to RR socket
 			self.client = APIClient()
 		# connect to RR socket, login
 		loginResponse = self.client.execute(loginCommand(userId=userId, password=password))
@@ -123,7 +129,7 @@ class MyXTB:
 #time.sleep(15)
 #my_xtb.sell_stonks()
 
-#print("finished xtb api")
+print("finished xtb api")
 
 
 

@@ -97,11 +97,10 @@ def train_classifier(buy_time, stock, news_sites):
     trainDataset = trainDataset.toarray()
 
     # dropping features with low occurence
-    drop_thresh = 10
     drop_idx = []
     for col_idx in range(trainDataset.shape[1]):
         curr_col = trainDataset[:, col_idx]
-        if(np.sum(curr_col) < drop_thresh):
+        if(np.sum(curr_col) < DROP_THRESH):
             drop_idx.append(col_idx)
     print("dropping", len(drop_idx), "features of", trainDataset.shape[1])
     trainDataset = np.delete(trainDataset, drop_idx, 1)
@@ -112,6 +111,8 @@ def train_classifier(buy_time, stock, news_sites):
 
     # training random forest classifier
     xgb_classifier = XGBClassifier()
+    if USE_REGRESSOR:
+        xgb_classifier = XGBRegressor(objective='reg:squarederror') 
     xgb_classifier.fit(trainDataset, bin_labels)
 
     return xgb_classifier, countVector, drop_idx
@@ -152,7 +153,7 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
     
 print("start training")
 #hyp_param = [9, 13, "dax", ["cnbc_finance"]]
-hyp_param = [16, 18, "nasdaq", ["cnn_world", "faz_news", "marketwatch_topstories", "investing_world"]]
+hyp_param = [16, 18, "dow", ["cnbc_economy", "spiegel_wirtschaft", "investing_economy", "cnbc_finance", "bbc_business", "faz_news", "cnn_world", "welt_wirtschaft", "wsj_markets"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # train classifier
