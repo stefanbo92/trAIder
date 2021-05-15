@@ -8,6 +8,8 @@ from xAPIConnector import *
 # enter your login credentials here
 userId = 12188475
 password = 'xoh18174'
+STOCK_NAME = "DE30"
+VOLUME = 0.05
 
 
 class MyXTB:
@@ -33,7 +35,7 @@ class MyXTB:
 
 		# getting data
 		self.perform_login()
-		curr_symbol = self.client.execute(baseCommand("getSymbol",dict(symbol="DE30")))
+		curr_symbol = self.client.execute(baseCommand("getSymbol",dict(symbol=STOCK_NAME)))
 		ask_price = curr_symbol["returnData"]["ask"]
 		time_price = curr_symbol["returnData"]["time"]+60000
 		print("ask_price for buying",ask_price,"time:",time_price)
@@ -51,10 +53,10 @@ class MyXTB:
 			"order": 0,
 			"price": ask_price,
 			"sl": 0.0,
-			"symbol": "DE30",
+			"symbol": STOCK_NAME,
 			"tp": 0.0,
 			"type": 0,
-			"volume": 0.05
+			"volume": VOLUME
 		}
 
 		# execute buy order
@@ -68,7 +70,7 @@ class MyXTB:
 		print("Selling STONKS!")
 		# getting data
 		self.perform_login()
-		curr_symbol = self.client.execute(baseCommand("getSymbol",dict(symbol="DE30")))
+		curr_symbol = self.client.execute(baseCommand("getSymbol",dict(symbol=STOCK_NAME)))
 		ask_price = curr_symbol["returnData"]["ask"]
 		time_price = curr_symbol["returnData"]["time"]+60000
 		print("ask_price for sell",ask_price,"time:",time_price)
@@ -89,10 +91,10 @@ class MyXTB:
 			"order": last_order,
 			"price": ask_price,
 			"sl": 0.0,
-			"symbol": "DE30",
+			"symbol": STOCK_NAME,
 			"tp": 0.0,
 			"type": 2,
-			"volume": 0.05
+			"volume": VOLUME
 		}
 
 		# execute close order
@@ -106,10 +108,10 @@ class MyXTB:
 	def test_func(self):
 		self.perform_login()
 		# own stuff
-		self.client.execute(baseCommand("getSymbol",dict(symbol="DE30")))
+		self.client.execute(baseCommand("getSymbol",dict(symbol=STOCK_NAME)))
 		#self.client.execute(baseCommand("getCurrentUserData"))
-		#self.client.execute(baseCommand("getMarginTrade",dict(symbol="DE30", volume=1.0)))
-		#self.client.execute(baseCommand("getProfitCalculation",dict(closePrice=15150, cmd=0, openPrice=15000, symbol="DE30",volume=0.05))) # cmd 0->buy, 1->sell
+		#self.client.execute(baseCommand("getMarginTrade",dict(symbol=STOCK_NAME, volume=1.0)))
+		#self.client.execute(baseCommand("getProfitCalculation",dict(closePrice=15150, cmd=0, openPrice=15000, symbol=STOCK_NAME,volume=VOLUME))) # cmd 0->buy, 1->sell
 		#self.client.execute(baseCommand("getTradeRecords",dict(orders=[273180485])))
 		trade_hist = self.client.execute(baseCommand("getTradesHistory",dict(end=0, start=0)))
 		print("trading history:")
