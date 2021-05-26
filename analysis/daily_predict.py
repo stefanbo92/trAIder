@@ -153,7 +153,7 @@ def daily_predict(xgb_classifier, countVector, drop_idx, buy_time, stock, news_s
     
 print("start training")
 #hyp_param = [9, 13, "dax", ["cnbc_finance"]]
-hyp_param = [16, 18, "dow", ["cnbc_economy", "spiegel_wirtschaft", "investing_economy", "cnbc_finance", "bbc_business", "faz_news", "cnn_world", "welt_wirtschaft", "wsj_markets"]]
+hyp_param = [15, 18, "dax", ["investing_world", "faz_news", "cnn_money", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft", "faz_wirtschaft", "bbc_business", "faz_finanzen"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # train classifier
@@ -161,7 +161,7 @@ xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param
 
 # looping every day until buy time is reached
 print("staring every day loop")
-buy_time = [16,5]
+buy_time = [15,3]
 sell_time = hyp_param[1]
 my_xtb = MyXTB()
 while(True):
@@ -215,7 +215,7 @@ while(True):
                 break
         win_percent = ((sell_price - buy_price)/buy_price) * buy_sign * 100
         with open("daily_bets.txt", 'a') as file_object:
-            out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+"\n"
+            out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+" "+str(buy_sign)+"\n"
             file_object.write(out_str)
         time.sleep(9999) # sleep for two hours
 
