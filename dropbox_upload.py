@@ -35,7 +35,7 @@ def upload_news():
     output, error = process.communicate()
             
 print("start uploading loop")
-upload_time = "20_00"
+upload_time = "23_00"
 two_hours = 60 * 60 * 2
 
 while(True):

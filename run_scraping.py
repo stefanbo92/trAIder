@@ -35,8 +35,16 @@ def run_scraping():
 
 
 print("start scraping everything")
-times_arr = ["09_30", "11_00", "13_00", "15_00", "16_00", "18_00"]
+times_arr = ["01_00", "3_00", "5_00", "7_00", "09_30", "11_00", "13_00", "15_00", "16_00", "18_00", "20_00", "22_00"]
 arr_idx = 0
+
+# find current arr_idx
+curr_hour = datetime.now().strftime("%Y_%m_%d_%H_%M").split("_")[3]
+for idx, time_str in enumerate(times_arr):
+    if( int(curr_hour) >= int(time_str.split("_")[0])):
+        arr_idx = idx+1
+        if (arr_idx==len(times_arr)):
+            arr_idx=0
 
 while(True):
     # getting current date and time
