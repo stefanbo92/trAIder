@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 import datetime
 import pickle
 
+NUM_FIN_HISTORY = 20
 
 def get_stock_prizes():
     # finding all folders in data
@@ -148,7 +149,7 @@ def get_train_data(buy_time, sell_time, news_sites, stock):
 
     # getting stock features 
     stock_features = get_stock_features(
-        stock_data, stock, times_changes, buy_time, 20)
+        stock_data, stock, times_changes, buy_time, NUM_FIN_HISTORY)
 
     # creating feature vector
     feature_vec = []
