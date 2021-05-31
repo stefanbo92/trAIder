@@ -39,19 +39,19 @@ def get_latest_news(news_sites, date_arr, buy_time):
                 day_news += line_arr[2]+" [NL] "+line_arr[3]+" [NL] "
         else:
             print("Caution: no news found for", time, "in", news_site)
-        # remove bad characters
-        day_news = day_news.lower()
-        day_news = day_news.replace(".", "")
-        day_news = day_news.replace("\n", "")
-        day_news = day_news.replace('“', '').replace('„', '')
-        day_news = day_news.replace('[nl]', '')
-        day_news = day_news.replace(':', '').replace('-', ' ').replace('–', '')
-        day_news = day_news.replace('  ', ' ').replace('?', '')
-        day_news = day_news.replace('»', '').replace('«', '')
-        day_news = day_news.replace('!', '').replace('"', '')
-        day_news = day_news.replace('+', '').replace('+', '')
-        #print(day_news)
-        return day_news
+    # remove bad characters
+    day_news = day_news.lower()
+    day_news = day_news.replace(".", "")
+    day_news = day_news.replace("\n", "")
+    day_news = day_news.replace('“', '').replace('„', '')
+    day_news = day_news.replace('[nl]', '')
+    day_news = day_news.replace(':', '').replace('-', ' ').replace('–', '')
+    day_news = day_news.replace('  ', ' ').replace('?', '')
+    day_news = day_news.replace('»', '').replace('«', '')
+    day_news = day_news.replace('!', '').replace('"', '')
+    day_news = day_news.replace('+', '').replace('+', '')
+    #print(day_news)
+    return day_news
 
 
 def get_fin_data(stock, date_arr, buy_time):
