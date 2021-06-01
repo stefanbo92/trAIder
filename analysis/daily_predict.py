@@ -1,10 +1,7 @@
 import os
 import numpy as np
-from matplotlib import pyplot as plt
 import datetime
-import pickle
-import pandas as pd
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
 from sklearn.feature_extraction.text import CountVectorizer
 
 from xgboost import XGBClassifier
@@ -72,7 +69,7 @@ def get_fin_data(stock, date_arr, buy_time):
             break
 
     # check if current buy time is already in current data
-    if idx<0:
+    if curr_stock_idx<0:
         print("ERROR: buy time data not found!!!")
 
     # go backwards and save previous stock prices
@@ -163,7 +160,7 @@ if (hyp_param[0]==9): # buy at 9:30
     buy_minutes+=30
 buy_time = [hyp_param[0],buy_minutes]
 sell_time = hyp_param[1]
-#my_xtb = MyXTB()
+my_xtb = MyXTB()
 while(True):
     # getting current date and time
     today = datetime.now()
@@ -181,12 +178,12 @@ while(True):
         if prediction[0] > 0:
             # buy long
             buy_sign = 1
-            #my_xtb.buy_stonks("long")
+            my_xtb.buy_stonks("long")
             print("buying long")
         else:
             # buy short
             buy_sign = -1
-            #my_xtb.buy_stonks("short")
+            my_xtb.buy_stonks("short")
             print("buying short")
         print("buying done, sleeping for 3999 seconds")
         time.sleep(3999) # sleep for one hour
@@ -196,7 +193,7 @@ while(True):
     if sell_time-int(date_time_arr[3]) == 0:
         # selling position
         print("selling position")
-        #my_xtb.sell_stonks()
+        my_xtb.sell_stonks()
         # logging results
         time.sleep(200) # wait until latest prices were written to fill
         all_stock_data = get_stock_prizes()
