@@ -24,21 +24,18 @@ def get_index_price(url):
     # opening
     opening_pos = current_div.find("<strong>Eröffnung")+86
     end_pos = current_div.find("/", opening_pos)
-    opening = current_div[opening_pos:end_pos].replace(
-        ".", "").replace(",", ".").strip()
+    opening = "0"#current_div[opening_pos:end_pos].replace(".", "").replace(",", ".").strip()
     # day low
     low_pos = current_div.find("<strong>Tagestief")+89
     end_pos = current_div.find("/", low_pos)
-    low = current_div[low_pos:end_pos].replace(
-        ".", "").replace(",", ".").strip()
+    low = "0"#current_div[low_pos:end_pos].replace(".", "").replace(",", ".").strip()
     # day high
     high_pos = end_pos+1
     end_pos = current_div.find("</td>", high_pos)
-    high = current_div[high_pos:end_pos].replace(
-        ".", "").replace(",", ".").strip()
+    high = "0"#current_div[high_pos:end_pos].replace(".", "").replace(",", ".").strip()
     # volume
     volume_pos = current_div.find("<strong>Marktkapitalisierung")
-    if (volume_pos < 0):
+    if (True): #(volume_pos < 0):
         volume = "1"
     else:
         volume_pos += re.search(r'\d', current_div[volume_pos:]).start()
