@@ -1,10 +1,9 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
-import time
 from scraper_check import *
+from analysis.read_daily_bets import *
 
 def start(update: Update, context: CallbackContext) -> None:
-    count=0
     update.message.reply_text(f'Hello {update.effective_user.first_name}. Starting telegram bot to check scraping..')
     print("Starting telegram bot to check scraping...")
     number_news = check_news_available()
@@ -18,10 +17,15 @@ def start(update: Update, context: CallbackContext) -> None:
         print("Warning no data was scraped!!")
         update.message.reply_text(f'Warning no data was scraped!')
 
+def get_bets(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text(f'Hello {update.effective_user.first_name}. Starting telegram bot read daily bets..')
+    daily_bets_str = get_daily_bets_str()
+    update.message.reply_text(f'Daily Bets: \n'+daily_bets_str)
 
 updater = Updater('1445895754:AAFbd731kEdlRWlamRuQlwAE_6NFviuVLwc')
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
+updater.dispatcher.add_handler(CommandHandler('get_bets', get_bets))
 
 updater.start_polling()
 updater.idle()
