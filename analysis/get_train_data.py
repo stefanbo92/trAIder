@@ -134,7 +134,7 @@ def get_stock_features(stock_data, stock_name, times_changes, buy_time, num_back
 
     return saved_features
 
-def get_train_data(buy_time, sell_time, news_sites, stock):
+def get_train_data(buy_time, sell_time, news_sites, stock, last_date = None):
     # specify when you want to buy stock and when to sell it
     print("Writing features and lables from",
           news_sites, "and", stock, "to file... (Buy/Sell: ",buy_time,sell_time,")")
@@ -155,6 +155,13 @@ def get_train_data(buy_time, sell_time, news_sites, stock):
     feature_vec = []
     for idx, time in enumerate(times_changes):
         #print(idx, time, stock_features[idx][0], len(news[idx]))
+
+        # if last date is given only save data up until given date
+        if last_date is not None:
+            if last_date.year <= time.year and last_date.month <= time.month and last_date.day <= time.day:
+                price_changes = price_changes[:idx]
+                break
+
         curr_feature = [idx, time, stock_features[idx], news[idx]]
         feature_vec.append(curr_feature)
 
