@@ -1,9 +1,5 @@
-import os
 import numpy as np
-from matplotlib import pyplot as plt
-import datetime
 import pickle
-import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -12,12 +8,23 @@ from xgboost import XGBClassifier, XGBRegressor
 # PARAMETERS
 DROP_THRESH = 3
 USE_REGRESSOR = False
-ADD_NUMERICAL = True
+ADD_NUMERICAL = False
 
 def get_financial_features(raw_financial_features):
     fin_feat=np.array(raw_financial_features)
     fin_feat=np.diff(fin_feat,axis=1)
     return fin_feat
+
+def clean_text(text):
+    text = text.replace('“', '').replace('„', '')
+    text = text.replace('[nl]', '')
+    text = text.replace(':', '').replace('-', ' ').replace('–', '')
+    text = text.replace('  ', ' ').replace('?', '')
+    text = text.replace('»', '').replace('«', '')
+    text = text.replace('!', '').replace('"', '')
+    text = text.replace('+', '').replace('+', '')
+    text = text.replace('xxx', '').replace('\'s', '')
+    return text
 
 def get_prepared_data():
     # reading raw features and labels
@@ -37,14 +44,7 @@ def get_prepared_data():
     weekday_feat = []
     for raw_feat in features_raw:
         # removing unneccessary characters from text
-        curr_text = raw_feat[3]
-        curr_text = curr_text.replace('“', '').replace('„', '')
-        curr_text = curr_text.replace('[nl]', '')
-        curr_text = curr_text.replace(':', '').replace('-', ' ').replace('–', '')
-        curr_text = curr_text.replace('  ', ' ').replace('?', '')
-        curr_text = curr_text.replace('»', '').replace('«', '')
-        curr_text = curr_text.replace('!', '').replace('"', '')
-        curr_text = curr_text.replace('+', '').replace('+', '')
+        curr_text = clean_text(raw_feat[3])
         text_features.append(curr_text)
         raw_financial_features.append(raw_feat[2])
         weekday_feat.append(raw_feat[1].weekday())
@@ -93,19 +93,26 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
     # adding numerical features
     if ADD_NUMERICAL:
         trainDataset = np.append(trainDataset, train_numeric_features ,axis=1)
-        valDataset = np.append(valDataset, val_numeric_features ,axis=1)
+        if (len(val_text_features)>0):
+            valDataset = np.append(valDataset, val_numeric_features ,axis=1)
 
     # training random forstes classifier
+    ml_model = None
+    predictions = None
     if(USE_REGRESSOR==False):
         xgb_classifier = XGBClassifier(max_depth=10) # max_depth=12
         xgb_classifier.fit(trainDataset, train_bin_lables)
+        ml_model = xgb_classifier
         # performing predictions on validation dataset
-        predictions = xgb_classifier.predict(valDataset)
+        if len(val_text_features):
+            predictions = xgb_classifier.predict(valDataset)
     else: # regressor
         xgb_regressor = XGBRegressor(objective='reg:squarederror') 
         xgb_regressor.fit(trainDataset, train_lables)
-        predictions = xgb_regressor.predict(valDataset)
-    return predictions
+        ml_model = xgb_regressor
+        if len(val_text_features):
+            predictions = xgb_regressor.predict(valDataset)
+    return predictions, countVector, drop_idx, ml_model
 
 def train_test():
     text_features, numeric_features, lables, bin_labels = get_prepared_data()
@@ -124,7 +131,7 @@ def train_test():
     val_lables = lables[int(n_data*train_split):]
 
     # train on data and predict
-    predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
+    predictions, _, _,_ = train_predict(train_text_features, train_numeric_features, train_lables, \
                                     val_text_features, val_numeric_features)
 
     # evaluation statistics

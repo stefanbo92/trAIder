@@ -114,7 +114,7 @@ def get_news(news_sites, times_changes, buy_time):
     return saved_news
 
 
-def get_stock_features(stock_data, stock_name, times_changes, buy_time, num_backwards):
+def get_stock_features(stock_data, stock_name, times_changes, buy_time):
     # looping over all times from labels
     saved_features = []
     stock_prices = stock_data[stock_name]
@@ -123,11 +123,13 @@ def get_stock_features(stock_data, stock_name, times_changes, buy_time, num_back
         # getting time of the stock price
         feature = []
         for idx, stock_time in enumerate(stock_times):
-            if label_time.year == stock_time.year and label_time.month == stock_time.month and label_time.day == stock_time.day and stock_time.hour <= buy_time:
+            if label_time.year == stock_time.year and \
+                label_time.month == stock_time.month and \
+                    label_time.day == stock_time.day and \
+                        stock_time.hour == buy_time:
                 #print("stock time", stock_time, "price:", stock_prices[idx])
-                feature.append(stock_prices[idx])
                 # go backwards and save previous stock prices
-                for back_idx in range(idx-1, idx-num_backwards, -1):
+                for back_idx in range(idx, idx-NUM_FIN_HISTORY, -1):
                     feature.append(stock_prices[back_idx])
                 break
         saved_features.append(feature)
@@ -149,7 +151,7 @@ def get_train_data(buy_time, sell_time, news_sites, stock, last_date = None):
 
     # getting stock features 
     stock_features = get_stock_features(
-        stock_data, stock, times_changes, buy_time, NUM_FIN_HISTORY)
+        stock_data, stock, times_changes, buy_time)
 
     # creating feature vector
     feature_vec = []

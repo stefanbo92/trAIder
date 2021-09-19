@@ -7,7 +7,7 @@ from daily_predict import train_classifier, daily_predict
 
 # resim dates
 delta = timedelta(days=1)
-start_date = datetime.datetime(2021, 8, 1)
+start_date = datetime.datetime(2021, 8, 1,)
 end_date = datetime.datetime.now() - delta
 
 # train predictor
@@ -22,7 +22,7 @@ sell_time = hyp_param[1]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2], start_date)
 # train classifier
-xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
+xgb_classifier, countVector, drop_idx = train_classifier()
 
 # loop from start day until today
 print("staring every day loop")
@@ -35,38 +35,35 @@ while start_date <= end_date:
     # retrain model on sunday
     if today.weekday() == 7:
         get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2], (today - delta))
-        xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
+        xgb_classifier, countVector, drop_idx = train_classifier()
 
     if today.weekday() > 4: # skip weekend
         start_date += delta
         continue
 
-    date_time = today.strftime("%Y_%m_%d_%H_%M")
-    date_time_arr = date_time.split("_")
     # faking buy time
-    date_time_arr[3]=buy_time[0]
-    date_time_arr[4]=buy_time[1]
-    print("Current datetime:", date_time)
+    today = today.replace(hour=buy_time[0], minute=buy_time[1])
+    print("Current datetime:", today)
 
     # buying
-    if (buy_time[0]-int(date_time_arr[3]) == 0) and (buy_time[1]-int(date_time_arr[4]) <= 0):
+    if (buy_time[0]-int(today.hour) == 0) and (buy_time[1]-int(today.minute) <= 0):
         # make daily prediction
-        prediction = daily_predict(date_time_arr, xgb_classifier, countVector, drop_idx, hyp_param[0], hyp_param[2], hyp_param[3])
+        prediction = daily_predict(today, xgb_classifier, countVector, drop_idx, hyp_param[0], hyp_param[2], hyp_param[3])
         if prediction[0] > 0:
             # buy long
             buy_sign = 1
-            print("buying long")
+            #print("buying long")
         else:
             # buy short
             buy_sign = -1
-            print("buying short")
+            #print("buying short")
 
     # selling
     # faking sell time now
-    date_time_arr[3]=sell_time
-    if sell_time-int(date_time_arr[3]) == 0:
+    today = today.replace(hour=sell_time)
+    if sell_time-int(today.hour) == 0:
         # selling position
-        print("selling position")
+        #print("selling position")
         # logging results
         all_stock_data = get_stock_prizes()
         curr_stock = all_stock_data[hyp_param[2]]
@@ -97,6 +94,7 @@ while start_date <= end_date:
     start_date += delta
 print(out_str)
 print("average win per day: ", np.mean(np.array(total_win)))
+print("Win accuracy: ", np.sum((np.array(total_win)> 0))/len(total_win))
 
 
 

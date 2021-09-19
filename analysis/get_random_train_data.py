@@ -17,8 +17,8 @@ def get_random_hyperparam():
 
     # select index
     # indeces = ["dax", "sp500", "dow", "nasdaq", "nikkei"]
-    indeces = ["dax", "sp500", "dow", "nasdaq", "dax", "dax", "dax"]
-    rand_index = randint(0, 4)
+    indeces = ["dax", "sp500", "nasdaq", "dax"]
+    rand_index = randint(0, 3)
     stock = indeces[rand_index]
     if stock != "dax": # only buy and sell when market is open
         buy_time = 16
@@ -40,8 +40,8 @@ def get_random_hyperparam():
 
 
 def train_random():
-    best_gain = 0.10
-    best_acc = 0.6
+    best_gain = 0.06
+    best_acc = 0.55
     total_accuracy = []
     total_gain = []
     for i in range(1000):
@@ -53,11 +53,11 @@ def train_random():
         get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
         # training data and calculate average gain
         gains, accuracy = train_test()
-        gains_kfold, accuracy_kfold = kfold_train_test(7)
+        #gains_kfold, accuracy_kfold = kfold_train_test(7)
         if gains is None: # if no calculations could be performed
             continue
-        gains=gains+gains_kfold
-        accuracy=(accuracy+accuracy_kfold)/2.0
+        #gains=gains+gains_kfold
+        #accuracy=(accuracy+accuracy_kfold)/2.0
         average_gain = np.array(gains).sum()/len(gains)
         total_accuracy.append(accuracy)
         total_gain.append(average_gain)
@@ -82,7 +82,7 @@ def train_random():
 
 train_random()
 
-hyp_param = [11, 18, "dax", ["investing_world", "wsj_world", "wsj_markets", "cnbc_business", "bbc_world", "cnn_news", "spiegel_wirtschaft", "welt_wirtschaft", "faz_news"]]
+hyp_param = [13, 16, "dax", ["spiegel_schlagzeilen", "investing_economy", "cnn_world", "bbc_world", "cnbc_world"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # training data and calculate average gain

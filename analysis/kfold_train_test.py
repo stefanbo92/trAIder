@@ -39,7 +39,7 @@ def kfold_train_test(k_folds):
             val_lables = lables[slice_index]
 
         # train on data and predict
-        predictions = train_predict(train_text_features, train_numeric_features, train_lables, \
+        predictions, _, _, _ = train_predict(train_text_features, train_numeric_features, train_lables, \
                                     val_text_features, val_numeric_features)
         if (len(predictions)==0):
             print("YOLO predictions", predictions)
