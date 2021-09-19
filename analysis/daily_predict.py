@@ -145,78 +145,80 @@ def daily_predict(date_arr, xgb_classifier, countVector, drop_idx, buy_time, sto
 
     return prediction
 
-print("start training")
-#hyp_param = [11, 13, "dax", ["cnbc_finance"]]
-hyp_param = [15, 18, "dax", ["investing_world", "faz_news", "cnn_money", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft", "faz_wirtschaft", "bbc_business", "faz_finanzen"]]
-# getting train data
-get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
-# train classifier
-xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
 
-# looping every day until buy time is reached
-print("staring every day loop")
-buy_minutes = 3
-if (hyp_param[0]==9): # buy at 9:30
-    buy_minutes+=30
-buy_time = [hyp_param[0],buy_minutes]
-sell_time = hyp_param[1]
-my_xtb = MyXTB()
-while(True):
-    # getting current date and time
-    today = datetime.now()
-    if today.weekday() > 4: # skip weekend
-        time.sleep(9999)
-        continue
-    date_time = today.strftime("%Y_%m_%d_%H_%M")
-    date_time_arr = date_time.split("_")
-    print("getting datetime:", date_time)
+if __name__ == '__main__':
+    print("start training")
+    #hyp_param = [11, 13, "dax", ["cnbc_finance"]]
+    hyp_param = [13, 16, "dax", ["spiegel_schlagzeilen", "investing_economy", "cnn_world", "bbc_world", "cnbc_world"]]
+    # getting train data
+    get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
+    # train classifier
+    xgb_classifier, countVector, drop_idx = train_classifier(hyp_param[0], hyp_param[2], hyp_param[3])
 
-    # buying
-    if (buy_time[0]-int(date_time_arr[3]) == 0) and (buy_time[1]-int(date_time_arr[4]) <= 0):
-        # make daily prediction
-        prediction = daily_predict(date_time_arr, xgb_classifier, countVector, drop_idx, hyp_param[0], hyp_param[2], hyp_param[3])
-        if prediction[0] > 0:
-            # buy long
-            buy_sign = 1
-            my_xtb.buy_stonks("long")
-            print("buying long")
-        else:
-            # buy short
-            buy_sign = -1
-            my_xtb.buy_stonks("short")
-            print("buying short")
-        print("buying done, sleeping for 3999 seconds")
-        time.sleep(3999) # sleep for one hour
+    # looping every day until buy time is reached
+    print("staring every day loop")
+    buy_minutes = 3
+    if (hyp_param[0]==9): # buy at 9:30
+        buy_minutes+=30
+    buy_time = [hyp_param[0],buy_minutes]
+    sell_time = hyp_param[1]
+    my_xtb = MyXTB()
+    while(True):
+        # getting current date and time
+        today = datetime.now()
+        if today.weekday() > 4: # skip weekend
+            time.sleep(9999)
+            continue
+        date_time = today.strftime("%Y_%m_%d_%H_%M")
+        date_time_arr = date_time.split("_")
+        print("getting datetime:", date_time)
 
-    # selling
-    #print("selling if",sell_time,"==", int(date_time_arr[3]))
-    if sell_time-int(date_time_arr[3]) == 0:
-        # selling position
-        print("selling position")
-        my_xtb.sell_stonks()
-        # logging results
-        time.sleep(200) # wait until latest prices were written to fill
-        all_stock_data = get_stock_prizes()
-        curr_stock = all_stock_data[hyp_param[2]]
-        # getting actual buy and sell price
-        for back_idx in range(len(curr_stock)-1, len(curr_stock)-10, -1):
-            print("curr_stock_price:",back_idx, all_stock_data["times"][back_idx],curr_stock[back_idx])
-            if(all_stock_data["times"][back_idx].hour==hyp_param[1]):
-                sell_price = curr_stock[back_idx]
-                print("sell_stock", sell_price)
-            if(all_stock_data["times"][back_idx].hour==hyp_param[0]):
-                buy_price = curr_stock[back_idx]
-                print("buy_price recalc", buy_price)
-                break
-        win_percent = ((sell_price - buy_price)/buy_price) * buy_sign * 100
-        with open("daily_bets.txt", 'a') as file_object:
-            out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+" "+str(buy_sign)+"\n"
-            file_object.write(out_str)
-        time.sleep(9999) # sleep for two hours
+        # buying
+        if (buy_time[0]-int(date_time_arr[3]) == 0) and (buy_time[1]-int(date_time_arr[4]) <= 0):
+            # make daily prediction
+            prediction = daily_predict(date_time_arr, xgb_classifier, countVector, drop_idx, hyp_param[0], hyp_param[2], hyp_param[3])
+            if prediction[0] > 0:
+                # buy long
+                buy_sign = 1
+                my_xtb.buy_stonks("long")
+                print("buying long")
+            else:
+                # buy short
+                buy_sign = -1
+                my_xtb.buy_stonks("short")
+                print("buying short")
+            print("buying done, sleeping for 3999 seconds")
+            time.sleep(3999) # sleep for one hour
 
-    # wait and loop
-    #print("sleeping for 30s")
-    time.sleep(60)
+        # selling
+        #print("selling if",sell_time,"==", int(date_time_arr[3]))
+        if sell_time-int(date_time_arr[3]) == 0:
+            # selling position
+            print("selling position")
+            my_xtb.sell_stonks()
+            # logging results
+            time.sleep(200) # wait until latest prices were written to fill
+            all_stock_data = get_stock_prizes()
+            curr_stock = all_stock_data[hyp_param[2]]
+            # getting actual buy and sell price
+            for back_idx in range(len(curr_stock)-1, len(curr_stock)-10, -1):
+                print("curr_stock_price:",back_idx, all_stock_data["times"][back_idx],curr_stock[back_idx])
+                if(all_stock_data["times"][back_idx].hour==hyp_param[1]):
+                    sell_price = curr_stock[back_idx]
+                    print("sell_stock", sell_price)
+                if(all_stock_data["times"][back_idx].hour==hyp_param[0]):
+                    buy_price = curr_stock[back_idx]
+                    print("buy_price recalc", buy_price)
+                    break
+            win_percent = ((sell_price - buy_price)/buy_price) * buy_sign * 100
+            with open("daily_bets.txt", 'a') as file_object:
+                out_str = all_stock_data["times"][-1].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+" "+str(buy_sign)+"\n"
+                file_object.write(out_str)
+            time.sleep(9999) # sleep for two hours
+
+        # wait and loop
+        #print("sleeping for 30s")
+        time.sleep(60)
 
 
 

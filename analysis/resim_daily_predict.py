@@ -7,8 +7,8 @@ from daily_predict import train_classifier, daily_predict
 
 # resim dates
 delta = timedelta(days=1)
-start_date = datetime(2021, 8, 1)
-end_date = datetime.now() - delta
+start_date = datetime.datetime(2021, 8, 1)
+end_date = datetime.datetime.now() - delta
 
 # train predictor
 print("start training")
