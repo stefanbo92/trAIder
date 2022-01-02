@@ -7,12 +7,12 @@ from daily_predict import train_classifier, daily_predict
 
 # resim dates
 delta = timedelta(days=1)
-start_date = datetime.datetime(2021, 8, 1,)
+start_date = datetime.datetime(2021, 8, 1)
 end_date = datetime.datetime.now() - delta
 
 # train predictor
 print("start training")
-hyp_param = [13, 16, "dax", ["spiegel_schlagzeilen", "investing_economy", "cnn_world", "bbc_world", "cnbc_world"]]
+hyp_param = [13, 16, "dax", ["cnbc_finance", "investing_world"]]
 
 buy_minutes = 3
 if (hyp_param[0]==9): # buy at 9:30
@@ -87,9 +87,10 @@ while start_date <= end_date:
         win_percent = ((sell_price - buy_price)/buy_price) * buy_sign * 100
         if (sell_price < 1): # did not find data for selling
             win_percent = 0
+        else:
+            total_win.append(win_percent)
 
         out_str += all_stock_data["times"][today_idx].strftime("%Y_%m_%d_%H_%M") +": Win/Loss --> "+str(round(win_percent,3))+" "+str(buy_sign)+"\n"
-        total_win.append(win_percent)
 
     start_date += delta
 print(out_str)

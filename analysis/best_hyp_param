@@ -1,71 +1,92 @@
------  drop 10 feat, 14.03
-Average Gain: 0.257, Accuracy: 0.84 (49 days) --> Hyperparameters: 9, 15, "dax", ["cnn_world", "cnn_money", "cnbc_business", "wsj_markets", "faz_finanzen", "cnbc_finance", "investing_stock"]
------  drop 10 feat, 18.03
-Average Gain: 0.365, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_economy", "cnbc_business", "investing_stock"]
-Average Gain: 0.418, Accuracy: 0.65 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnn_news", "cnbc_business", "cnbc_finance"]
-Average Gain: 0.266, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "nasdaq", ["faz_news", "marketwatch_topstories", "wsj_world"]
-Average Gain: 0.197, Accuracy: 0.67 (49 days) --> Hyperparameters: 16, 18, "sp500", ["investing_economy", "faz_news", "wsj_world", "cnn_money", "cnbc_world", "bbc_world", "spiegel_wirtschaft", "cnn_world", "cnbc_business", "cnn_news"]
-Average Gain: 0.335, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "dow", ["investing_economy", "faz_wirtschaft", "cnbc_business", "investing_world"]
-Average Gain: 0.34, Accuracy: 0.78 (49 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnn_world", "faz_news", "marketwatch_topstories", "investing_world"]
------  drop 3 feat, 21.03
-Average Gain: 0.343, Accuracy: 0.78 (49 days) --> Hyperparameters: 9, 18, "dax", ["bbc_business", "faz_news", "cnbc_world", "cnn_news", "bbc_world", "faz_finanzen"]
-Average Gain: 0.461, Accuracy: 0.69 (49 days) --> Hyperparameters: 16, 18, "dow", ["investing_stock", "cnbc_world", "cnbc_finance", "spiegel_schlagzeilen", "cnbc_business", "faz_news", "wsj_world"]
-Average Gain: 0.498, Accuracy: 0.73 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_business", "bbc_business", "faz_finanzen", "cnn_money", "cnn_world", "cnn_news", "cnbc_economy"]
-Average Gain: 0.714, Accuracy: 0.8 (49 days) --> Hyperparameters: 16, 18, "dow", ["faz_news", "faz_finanzen", "cnn_news", "cnbc_world", "cnbc_finance", "spiegel_wirtschaft", "faz_wirtschaft", "welt_wirtschaft", "wsj_world"]
-Average Gain: 0.159, Accuracy: 0.71 (49 days) --> Hyperparameters: 15, 18, "dax", ["bbc_business", "cnbc_economy", "welt_wirtschaft", "bbc_world"]
-Average Gain: 0.375, Accuracy: 0.71 (49 days) --> Hyperparameters: 16, 18, "dow", ["wsj_world", "cnbc_business"]
-Average Gain: 0.353, Accuracy: 0.67 (49 days) --> Hyperparameters: 16, 18, "dow", ["bbc_business", "cnbc_finance"]
-Average Gain: 0.16, Accuracy: 0.71 (49 days) --> Hyperparameters: 9, 13, "dax", ["spiegel_wirtschaft", "cnn_money", "investing_stock", "investing_world", "cnbc_business", "faz_finanzen", "bbc_world"]
------ regressor, drop 3, 22.3: average total accuracy: 0.5090612244897958 av. gain: 0.00813740280580021 ( 1000 samples )
-Average Gain: 0.159, Accuracy: 0.71 (49 days) --> Hyperparameters: 9, 13, "dax", ["cnn_news", "investing_stock", "investing_economy", "cnbc_business", "cnbc_finance"]
-Average Gain: 0.536, Accuracy: 0.76 (49 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_world", "spiegel_wirtschaft", "faz_news", "wsj_markets", "faz_wirtschaft", "faz_finanzen"]
------- classifier, drop 3, 22.3: average total accuracy: 0.5062867252164023 av. gain: -0.006153043923056246 ( 646 samples )
-Average Gain: 0.525, Accuracy: 0.73 (49 days) --> Hyperparameters: 16, 18, "dow", ["faz_finanzen", "cnbc_business", "investing_economy", "cnn_world", "investing_world", "spiegel_schlagzeilen"]
-Average Gain: 0.214, Accuracy: 0.76 (49 days) --> Hyperparameters: 16, 18, "sp500", ["spiegel_wirtschaft", "welt_wirtschaft", "bbc_world"]
-Average Gain: 0.182, Accuracy: 0.71 (49 days) --> Hyperparameters: 15, 18, "dax", ["cnbc_business", "welt_wirtschaft", "cnn_money", "investing_world", "bbc_business", "cnbc_economy", "investing_economy", "bbc_world", "faz_finanzen"]
-Average Gain: 0.15, Accuracy: 0.73 (49 days) --> Hyperparameters: 16, 18, "dax", ["cnbc_world", "cnn_news"]
---------- classifier, drop3, 23.3 kfold+normal
-Average Gain: 0.246, Accuracy: 0.73 (73 days) --> Hyperparameters: 16, 18, "dow", ["spiegel_wirtschaft", "cnbc_finance"]
-Average Gain: 0.144, Accuracy: 0.71 (73 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_finance"]
-Average Gain: 0.251, Accuracy: 0.71 (73 days) --> Hyperparameters: 16, 18, "dow", ["welt_wirtschaft", "wsj_world", "investing_world", "cnbc_economy", "cnbc_business", "cnbc_world", "bbc_business"]
 --------- classifier, drop3, 30.3 kfold+normal average total accuracy: 0.5263214285714286 av. gain: 0.0006602053614520144 ( 1000 samples )
 Average Gain: 0.154, Accuracy: 0.71 (74 days) --> Hyperparameters: 9, 18, "dax", ["welt_wirtschaft", "cnn_news", "wsj_markets", "faz_wirtschaft", "wsj_world", "spiegel_schlagzeilen", "marketwatch_topstories", "investing_world", "cnbc_business"]
 Average Gain: 0.121, Accuracy: 0.72 (74 days) --> Hyperparameters: 13, 16, "dax", ["cnn_news", "cnbc_finance"]
 Average Gain: 0.267, Accuracy: 0.72 (74 days) --> Hyperparameters: 9, 18, "dax", ["faz_news", "marketwatch_topstories", "faz_finanzen", "cnbc_world", "cnn_news", "cnn_world", "wsj_markets", "investing_stock", "cnbc_economy", "bbc_world"]
-Average Gain: 0.126, Accuracy: 0.71 (74 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_economy", "spiegel_wirtschaft", "investing_economy", "cnbc_finance", "bbc_business", "faz_news", "cnn_world", "welt_wirtschaft", "wsj_markets"]
-Average Gain: 0.134, Accuracy: 0.72 (74 days) --> Hyperparameters: 13, 18, "dax", ["investing_world", "spiegel_schlagzeilen", "cnn_news", "faz_wirtschaft", "cnbc_finance", "spiegel_wirtschaft", "welt_wirtschaft", "faz_news", "wsj_world", "cnbc_business"]
-Average Gain: 0.135, Accuracy: 0.73 (74 days) --> Hyperparameters: 15, 18, "dax", ["bbc_world", "cnn_news", "cnn_money", "cnbc_business", "bbc_business", "cnbc_world"]
-Average Gain: 0.156, Accuracy: 0.72 (74 days) --> Hyperparameters: 15, 18, "dax", ["faz_news", "investing_world", "faz_finanzen", "cnn_money", "bbc_world", "bbc_business", "wsj_markets", "investing_stock"]
-Average Gain: 0.283, Accuracy: 0.75 (74 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_world", "bbc_business", "spiegel_wirtschaft", "cnbc_business", "faz_finanzen", "wsj_markets", "welt_wirtschaft", "cnn_money", "bbc_world"]
-Average Gain: 0.25, Accuracy: 0.75 (74 days) --> Hyperparameters: 11, 18, "dax", ["investing_world", "wsj_world", "wsj_markets", "cnbc_business", "bbc_world", "cnn_news", "spiegel_wirtschaft", "welt_wirtschaft", "faz_news"]
-Average Gain: 0.121, Accuracy: 0.76 (74 days) --> Hyperparameters: 16, 18, "dax", ["faz_finanzen", "faz_news", "cnn_news", "bbc_business", "investing_economy"]
-Average Gain: 0.216, Accuracy: 0.75 (74 days) --> Hyperparameters: 13, 18, "dax", ["cnn_world", "investing_economy", "cnbc_world", "cnn_money", "cnbc_finance", "cnbc_business", "bbc_world", "wsj_world", "faz_wirtschaft"]
-Average Gain: 0.202, Accuracy: 0.75 (74 days) --> Hyperparameters: 16, 18, "sp500", ["faz_wirtschaft", "cnn_world", "investing_economy"]
 --------- classifier, drop3, 16.04 kfold+normal average total accuracy: 0.5384038961038962 av. gain: 0.022145596742662668 ( 1000 samples )
-Average Gain: 0.249, Accuracy: 0.71 (92 days) --> Hyperparameters: 16, 18, "dow", ["faz_wirtschaft", "welt_wirtschaft", "investing_stock", "cnbc_finance", "faz_news", "faz_finanzen", "cnn_money", "wsj_markets"]
 Average Gain: 0.125, Accuracy: 0.73 (92 days) --> Hyperparameters: 15, 18, "dax", ["investing_world", "investing_stock", "wsj_world", "cnbc_business", "cnn_news", "faz_finanzen", "spiegel_wirtschaft", "cnn_world"]
-Average Gain: 0.167, Accuracy: 0.79 (92 days) --> Hyperparameters: 15, 18, "dax", ["investing_world", "faz_news", "cnn_money", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft", "faz_wirtschaft", "bbc_business", "faz_finanzen"]
-Average Gain: 0.113, Accuracy: 0.73 (92 days) --> Hyperparameters: 16, 18, "sp500", ["faz_wirtschaft", "bbc_business"]
-Average Gain: 0.106, Accuracy: 0.73 (92 days) --> Hyperparameters: 15, 18, "dax", ["bbc_business", "spiegel_schlagzeilen", "wsj_markets", "bbc_world", "faz_wirtschaft", "cnbc_finance", "faz_news", "marketwatch_topstories", "investing_stock"]
+x Average Gain: 0.167, Accuracy: 0.79 (92 days) --> Hyperparameters: 15, 18, "dax", ["investing_world", "faz_news", "cnn_money", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft", "faz_wirtschaft", "bbc_business", "faz_finanzen"]
 Average Gain: 0.142, Accuracy: 0.77 (92 days) --> Hyperparameters: 15, 18, "dax", ["marketwatch_topstories"]
-Average Gain: 0.156, Accuracy: 0.75 (92 days) --> Hyperparameters: 16, 18, "sp500", ["bbc_business", "investing_stock", "faz_wirtschaft", "cnbc_economy", "bbc_world", "cnn_world", "cnn_money"]
-Average Gain: 0.107, Accuracy: 0.72 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnbc_world", "wsj_markets", "welt_wirtschaft", "spiegel_wirtschaft", "bbc_world", "faz_news", "cnbc_finance"]
-Average Gain: 0.121, Accuracy: 0.73 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_world", "faz_wirtschaft"]
-Average Gain: 0.141, Accuracy: 0.75 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_world", "investing_world", "faz_wirtschaft"]
-Average Gain: 0.112, Accuracy: 0.7 (92 days) --> Hyperparameters: 15, 18, "dax", ["wsj_world", "cnbc_world", "cnbc_business", "cnn_world", "bbc_world", "bbc_business"]
-Average Gain: 0.133, Accuracy: 0.77 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_news", "faz_wirtschaft", "cnn_money", "marketwatch_topstories", "bbc_world", "spiegel_schlagzeilen", "investing_world", "wsj_markets", "cnn_world", "cnbc_world"]
-Average Gain: 0.229, Accuracy: 0.66 (92 days) --> Hyperparameters: 16, 18, "dow", ["cnn_news", "cnbc_economy", "faz_news", "cnn_money", "marketwatch_topstories", "spiegel_wirtschaft", "cnbc_finance", "cnbc_business"]
-Average Gain: 0.123, Accuracy: 0.7 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnbc_economy", "investing_world", "bbc_world", "welt_wirtschaft", "faz_news"]
-Average Gain: 0.202, Accuracy: 0.65 (92 days) --> Hyperparameters: 16, 18, "dow", ["cnn_money", "cnbc_world", "faz_finanzen", "bbc_business"]
-Average Gain: 0.121, Accuracy: 0.73 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_world", "faz_wirtschaft"]
-Average Gain: 0.331, Accuracy: 0.67 (92 days) --> Hyperparameters: 16, 18, "dow", ["cnbc_business", "faz_wirtschaft", "cnn_world", "wsj_world"]
-Average Gain: 0.276, Accuracy: 0.68 (92 days) --> Hyperparameters: 16, 18, "dow", ["welt_wirtschaft", "wsj_markets", "spiegel_wirtschaft", "spiegel_schlagzeilen", "cnn_news", "faz_news"]
-Average Gain: 0.233, Accuracy: 0.6 (92 days) --> Hyperparameters: 16, 18, "dow", ["faz_wirtschaft", "spiegel_schlagzeilen", "faz_finanzen", "investing_economy", "wsj_world"]
-Average Gain: 0.174, Accuracy: 0.78 (92 days) --> Hyperparameters: 15, 18, "dax", ["bbc_business", "cnn_world", "spiegel_schlagzeilen", "cnbc_world", "spiegel_wirtschaft"]
-Average Gain: 0.233, Accuracy: 0.66 (92 days) --> Hyperparameters: 16, 18, "dow", ["spiegel_schlagzeilen", "wsj_markets", "faz_news", "bbc_world", "faz_wirtschaft", "cnbc_economy", "marketwatch_topstories", "investing_world"]
 Average Gain: 0.126, Accuracy: 0.76 (91 days) --> Hyperparameters: 13, 18, "dax", ["bbc_world", "investing_economy", "cnbc_economy", "spiegel_schlagzeilen", "cnn_money", "marketwatch_topstories"]
 --------- classifier, drop20, 17.04 kfold+normal average total accuracy: 0.538376911976912 av. gain: 0.01574847064993825 ( 1000 samples )
 --------- regressor, drop20, 17.04 kfold+normal average total accuracy: 0.527899969990678 av. gain: 0.011739939443228773 ( 904 samples )
 --------- regressor, drop3, 19.04 kfold+normal average total accuracy: 0.5384926963874332 av. gain: 0.023803944755233147 ( 741 samples )
 --------- classifier, drop1000, 20.04 kfold+normal average total accuracy: 0.47953152958152956 av. gain: -0.05496031814848668 ( 1000 samples )
---------- classifier, drop3, no_numeric_feat, 20.04 kfold+normal
+--------- classifier, drop3, no_numeric_feat, 21.04 kfold+normal average total accuracy: 0.5488436774055949 av. gain: 0.033272685269842416 ( 751 samples )
+--------- classifier, drop3, 22.04 kfold+normal average total accuracy: 0.5427874259622704 av. gain: 0.021923175797582444 ( 887 samples )
+x Average Gain: 0.127, Accuracy: 0.6 (92 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnn_news", "cnbc_finance", "marketwatch_topstories", "investing_stock"]
+Average Gain: 0.2, Accuracy: 0.63 (92 days) --> Hyperparameters: 16, 18, "nasdaq", ["investing_economy", "cnn_news", "marketwatch_topstories", "bbc_business", "wsj_markets", "cnn_world", "spiegel_schlagzeilen", "faz_finanzen", "investing_world", "spiegel_wirtschaft"]
+Average Gain: 0.148, Accuracy: 0.69 (92 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_money", "bbc_business", "faz_wirtschaft", "investing_economy", "welt_wirtschaft", "investing_stock", "spiegel_schlagzeilen"]
+--------- classifier, drop3, no_numeric_feat, 04.05 kfold+normal average total accuracy: 0.5290874724161633 av. gain: 0.01059120650162485 ( 718 samples )
+--------- classifier Tfidf, drop3, 05.05 kfold+normal average total accuracy: 0.4850622402597403 av. gain: -0.01586960144441439 ( 1000 samples )
+--------- classifier drop3, 06.05 kfold+normal average total accuracy: 0.5276443725841317 av. gain: 0.009421671747663755 ( 747 samples )
+Average Gain: 0.141, Accuracy: 0.6 (102 days) --> Hyperparameters: 9, 18, "dax", ["spiegel_wirtschaft", "cnbc_world", "cnn_world", "cnn_news", "bbc_world", "cnbc_finance", "faz_news", "cnn_money", "faz_wirtschaft", "faz_finanzen"]
+Average Gain: 0.156, Accuracy: 0.77 (102 days) --> Hyperparameters: 15, 18, "dax", ["wsj_markets", "faz_news", "spiegel_schlagzeilen", "wsj_world", "cnn_world"]
+Average Gain: 0.121, Accuracy: 0.62 (102 days) --> Hyperparameters: 15, 18, "dax", ["cnbc_world", "faz_finanzen", "spiegel_wirtschaft", "wsj_world", "investing_world"]
+--------- classifier drop3, 18.05 kfold+normal average total accuracy: 0.5394740702880237 av. gain: 0.02095305536949409 ( 645 samples )
+Average Gain: 0.134, Accuracy: 0.61 (111 days) --> Hyperparameters: 16, 18, "nasdaq", ["wsj_world", "investing_stock", "welt_wirtschaft", "investing_economy", "wsj_markets", "bbc_world", "faz_news", "cnn_news", "spiegel_wirtschaft", "cnbc_business"]
+Average Gain: 0.122, Accuracy: 0.61 (111 days) --> Hyperparameters: 16, 18, "nasdaq", ["bbc_world", "cnn_news", "faz_finanzen", "faz_news", "investing_world", "cnbc_finance"]
+Average Gain: 0.164, Accuracy: 0.61 (111 days) --> Hyperparameters: 9, 18, "dax", ["bbc_world", "marketwatch_topstories"]
+-------- classifier drop3, 30.06 kfold+normal average total accuracy: average total accuracy: 0.5155954723495813 av. gain: 0.020519887994611682 ( 464 samples )
+Average Gain: 0.139, Accuracy: 0.61 (148 days) --> Hyperparameters: 16, 18, "nasdaq", ["spiegel_wirtschaft"]
+Average Gain: 0.144, Accuracy: 0.64 (148 days) --> Hyperparameters: 16, 18, "nasdaq", ["faz_news", "investing_economy", "cnbc_economy", "faz_wirtschaft", "investing_stock", "cnn_world"]
+-------- classifier drop3,no_numeric, 01.07 kfold+normal average total accuracy: 0.5189517886802657 av. gain: 0.019479740785431264 ( 248 samples )
+Average Gain: 0.125, Accuracy: 0.61 (148 days) --> Hyperparameters: 13, 18, "dax", ["marketwatch_topstories"]
+Average Gain: 0.127, Accuracy: 0.64 (148 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnbc_finance"]
+-------- regressor drop3, 02.07 average total accuracy: 0.5197968332054071 av. gain: 0.019965411982574094 ( 282 samples )
+Average Gain: 0.145, Accuracy: 0.65 (155 days) --> Hyperparameters: 9, 18, "dax", ["faz_wirtschaft", "cnn_world", "cnbc_world", "investing_stock", "spiegel_schlagzeilen", "wsj_world", "welt_wirtschaft", "cnbc_economy", "wsj_markets"]
+Average Gain: 0.14, Accuracy: 0.68 (129 days) --> Hyperparameters: 16, 18, "sp500", ["spiegel_schlagzeilen", "investing_world", "spiegel_wirtschaft", "investing_economy", "faz_news", "investing_stock", "cnn_news", "bbc_world", "faz_finanzen"]
+---- classifier drop3, 24.08 kfold+normal average total accuracy: 0.5306302779987274 av. gain: 0.023644079246369066 ( 154 samples )
+Average Gain: 0.089, Accuracy: 0.61 (192 days) --> Hyperparameters: 11, 18, "dax", ["spiegel_wirtschaft", "cnn_world", "cnbc_finance", "spiegel_schlagzeilen", "bbc_business"]
+Average Gain: 0.09, Accuracy: 0.63 (174 days) --> Hyperparameters: 16, 18, "sp500", ["wsj_world", "spiegel_schlagzeilen", "cnbc_business", "investing_world"]
+Average Gain: 0.124, Accuracy: 0.64 (193 days) --> Hyperparameters: 13, 16, "dax", ["cnbc_business", "spiegel_wirtschaft", "cnbc_finance", "welt_wirtschaft", "cnn_money"]
+---- classifier drop3, old commit 21.09 normal average total accuracy: 0.5227857551314841 av. gain: 0.012368655281372532 ( 1000 samples )
+---- classifier drop3, new commit, buytime<= 22.09 normal average total accuracy: 0.5216302052593612 av. gain: 0.010325705508072446 ( 1000 samples )
+---- classifier drop3, new commit, buytime== 23.09 normal average total accuracy: 0.5156209284040948 av. gain: 0.007953824834162303 ( 1000 samples )
+---- classifier drop3, 07.10 normal                       average total accuracy: 0.5079431649831649 av. gain: 0.0013992048855155856 ( 1000 samples )
+---- classifier drop3, 08.10 normal, weighted XGB         average total accuracy: 0.5129076863876864 av. gain: 0.005927828846361198 ( 1000 samples )
+---- classifier drop3, 10.10 normal+kfold average total accuracy: 0.5022004481075871 av. gain: 0.0015282284220294253 ( 162 samples )
+Average Gain: 0.062, Accuracy: 0.63 (237 days) --> Hyperparameters: 13, 16, "dax", ["cnbc_finance", "investing_world"]
+Average Gain: 0.066, Accuracy: 0.61 (211 days) --> Hyperparameters: 16, 18, "sp500", ["wsj_markets"]
+Average Gain: 0.069, Accuracy: 0.61 (237 days) --> Hyperparameters: 13, 16, "dax", ["cnbc_world", "cnn_world"]
+Average Gain: 0.065, Accuracy: 0.55 (211 days) --> Hyperparameters: 16, 18, "sp500", ["cnbc_finance", "wsj_markets", "welt_wirtschaft", "wsj_world", "investing_economy"]
+Average Gain: 0.06, Accuracy: 0.56 (211 days) --> Hyperparameters: 16, 18, "sp500", ["welt_wirtschaft", "spiegel_wirtschaft", "investing_stock", "cnn_world", "cnn_money", "cnbc_finance", "cnbc_economy"]
+---- classifier drop3, 20.12 normal
+Average Gain: 0.114, Accuracy: 0.65 (69 days) --> Hyperparameters: 11, 16, "dax", ["cnn_news", "wsj_markets", "cnbc_finance", "faz_news", "bbc_world"]
+Average Gain: 0.071, Accuracy: 0.59 (68 days) --> Hyperparameters: 16, 18, "nasdaq", ["faz_news", "welt_wirtschaft", "marketwatch_topstories"]
+Average Gain: 0.048, Accuracy: 0.59 (68 days) --> Hyperparameters: 16, 18, "nasdaq", ["investing_world", "wsj_markets", "cnbc_economy", "welt_wirtschaft", "spiegel_wirtschaft", "investing_economy", "cnn_news", "cnbc_world", "faz_finanzen"]
+Average Gain: 0.07, Accuracy: 0.57 (68 days) --> Hyperparameters: 16, 18, "nasdaq", ["investing_economy", "faz_finanzen"]
+Average Gain: 0.043, Accuracy: 0.57 (69 days) --> Hyperparameters: 11, 16, "dax", ["cnn_world", "cnn_money", "wsj_markets"]
+---- classifier drop3, 21.12 normal+kfold ||  average total accuracy: 0.5102004481075871 av. gain: 0.0085282284220294253 ( 360 samples )
+Average Gain: 0.035, Accuracy: 0.6 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["spiegel_wirtschaft", "cnbc_finance", "bbc_world", "cnbc_business", "marketwatch_topstories", "cnn_money"]
+Average Gain: 0.04, Accuracy: 0.56 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["bbc_business", "welt_wirtschaft", "bbc_world", "cnbc_world", "cnbc_economy", "investing_world", "cnbc_business", "wsj_markets", "faz_finanzen"]
+Average Gain: 0.097, Accuracy: 0.6 (274 days) --> Hyperparameters: 16, 18, "sp500", ["wsj_markets", "welt_wirtschaft", "investing_economy", "spiegel_schlagzeilen", "bbc_business"]
+Average Gain: 0.073, Accuracy: 0.57 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["faz_finanzen", "cnbc_economy", "investing_stock", "spiegel_wirtschaft", "wsj_world", "faz_wirtschaft", "investing_economy", "cnbc_world"]
+Average Gain: 0.039, Accuracy: 0.57 (301 days) --> Hyperparameters: 15, 16, "dax", ["bbc_business", "investing_stock", "cnn_money", "investing_economy"]
+Average Gain: 0.037, Accuracy: 0.56 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnn_world", "wsj_world", "spiegel_wirtschaft", "cnbc_finance", "investing_world", "marketwatch_topstories", "wsj_markets", "faz_news", "spiegel_schlagzeilen"]
+Average Gain: 0.095, Accuracy: 0.6 (274 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_money", "investing_stock", "cnbc_business", "cnbc_economy", "wsj_markets", "faz_finanzen", "faz_wirtschaft", "cnn_world"]
+Average Gain: 0.091, Accuracy: 0.59 (274 days) --> Hyperparameters: 16, 18, "sp500", ["faz_news", "welt_wirtschaft", "cnn_news", "cnbc_business", "wsj_markets", "bbc_business", "faz_finanzen", "investing_economy"]
+Average Gain: 0.061, Accuracy: 0.56 (274 days) --> Hyperparameters: 16, 18, "sp500", ["bbc_world", "wsj_markets", "faz_finanzen", "cnbc_world", "bbc_business", "wsj_world", "welt_wirtschaft", "investing_economy", "faz_news", "investing_world"]
+Average Gain: 0.093, Accuracy: 0.57 (274 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_money", "cnbc_world", "investing_world", "faz_finanzen", "investing_economy", "wsj_world"]
+Average Gain: 0.085, Accuracy: 0.56 (293 days) --> Hyperparameters: 11, 18, "dax", ["investing_economy", "cnn_money", "faz_wirtschaft", "cnbc_world", "cnbc_economy", "bbc_business", "cnn_news", "cnbc_business", "faz_news", "investing_world"]
+Average Gain: 0.05, Accuracy: 0.6 (293 days) --> Hyperparameters: 13, 16, "dax", ["investing_stock", "investing_world", "faz_news", "investing_economy", "wsj_world", "cnbc_economy", "cnbc_world"]
+Average Gain: 0.045, Accuracy: 0.55 (293 days) --> Hyperparameters: 11, 18, "dax", ["spiegel_wirtschaft", "bbc_business", "faz_wirtschaft", "marketwatch_topstories", "spiegel_schlagzeilen", "faz_news", "investing_economy", "investing_world", "cnbc_finance", "faz_finanzen"]
+Average Gain: 0.077, Accuracy: 0.59 (293 days) --> Hyperparameters: 13, 16, "dax", ["cnbc_world", "faz_news"]
+Average Gain: 0.069, Accuracy: 0.59 (293 days) --> Hyperparameters: 13, 18, "dax", ["faz_news", "cnn_money", "investing_stock", "cnn_news"]
+Average Gain: 0.036, Accuracy: 0.58 (274 days) --> Hyperparameters: 16, 18, "sp500", ["cnbc_economy", "wsj_world", "cnbc_business", "investing_stock", "faz_wirtschaft", "welt_wirtschaft", "investing_world", "bbc_world"]
+Average Gain: 0.065, Accuracy: 0.58 (274 days) --> Hyperparameters: 16, 18, "sp500", ["spiegel_wirtschaft", "cnn_news", "cnbc_finance", "cnbc_business", "bbc_business"]
+Average Gain: 0.07, Accuracy: 0.56 (274 days) --> Hyperparameters: 16, 18, "sp500", ["cnbc_finance", "wsj_world", "cnbc_economy", "cnn_money", "cnbc_business", "wsj_markets", "faz_wirtschaft", "cnbc_world", "spiegel_schlagzeilen", "cnn_world"]
+Average Gain: 0.114, Accuracy: 0.65 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnbc_business", "faz_wirtschaft", "cnbc_world", "wsj_markets"]
+Average Gain: 0.062, Accuracy: 0.56 (274 days) --> Hyperparameters: 16, 18, "sp500", ["faz_news", "investing_stock", "cnbc_finance", "bbc_world", "cnbc_world", "cnn_world"]
+Average Gain: 0.039, Accuracy: 0.61 (293 days) --> Hyperparameters: 13, 16, "dax", ["bbc_business", "cnbc_business", "investing_world"]
+Average Gain: 0.049, Accuracy: 0.55 (293 days) --> Hyperparameters: 11, 18, "dax", ["cnn_money", "cnn_news", "faz_news", "investing_world", "marketwatch_topstories", "investing_stock", "faz_finanzen"]
+Average Gain: 0.045, Accuracy: 0.56 (293 days) --> Hyperparameters: 11, 18, "dax", ["cnn_world", "marketwatch_topstories", "cnn_money", "investing_economy", "cnn_news", "bbc_business"]
+Average Gain: 0.032, Accuracy: 0.58 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["investing_stock", "marketwatch_topstories", "wsj_world", "cnbc_business", "investing_economy", "spiegel_schlagzeilen", "cnbc_world", "cnn_world"]
+Average Gain: 0.056, Accuracy: 0.58 (301 days) --> Hyperparameters: 15, 18, "dax", ["wsj_world", "cnbc_finance"]
+Average Gain: 0.108, Accuracy: 0.58 (274 days) --> Hyperparameters: 16, 18, "sp500", ["bbc_business", "investing_economy", "investing_world", "cnn_money"]
+Average Gain: 0.099, Accuracy: 0.57 (274 days) --> Hyperparameters: 16, 18, "sp500", ["welt_wirtschaft", "spiegel_schlagzeilen", "investing_world", "investing_economy", "cnn_world", "investing_stock", "cnn_money", "wsj_world", "wsj_markets"]
+Average Gain: 0.091, Accuracy: 0.56 (274 days) --> Hyperparameters: 16, 18, "sp500", ["cnn_money", "investing_economy", "spiegel_wirtschaft", "cnbc_world", "investing_stock", "cnn_news", "cnn_world", "wsj_markets", "cnbc_economy", "investing_world"]
+Average Gain: 0.042, Accuracy: 0.58 (293 days) --> Hyperparameters: 11, 16, "dax", ["bbc_world", "welt_wirtschaft", "marketwatch_topstories", "wsj_markets", "cnn_news", "investing_stock", "investing_economy", "faz_news", "cnbc_finance", "cnn_money"]
+Average Gain: 0.048, Accuracy: 0.55 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["cnbc_economy", "investing_stock", "wsj_world", "faz_news", "cnbc_finance", "investing_world", "cnn_news", "cnbc_world", "faz_wirtschaft"]
+Average Gain: 0.038, Accuracy: 0.56 (293 days) --> Hyperparameters: 13, 16, "dax", ["investing_stock", "cnn_news", "bbc_world", "cnn_money", "investing_world"]
+Average Gain: 0.083, Accuracy: 0.56 (274 days) --> Hyperparameters: 16, 18, "sp500", ["investing_economy", "spiegel_schlagzeilen", "wsj_world", "bbc_world", "investing_world", "cnn_news"]
+Average Gain: 0.058, Accuracy: 0.55 (292 days) --> Hyperparameters: 16, 18, "nasdaq", ["investing_stock", "welt_wirtschaft", "wsj_markets", "faz_news", "faz_wirtschaft", "cnbc_world", "cnn_world", "marketwatch_topstories"]

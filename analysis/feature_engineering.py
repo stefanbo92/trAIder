@@ -8,7 +8,7 @@ from xgboost import XGBClassifier, XGBRegressor
 # PARAMETERS
 DROP_THRESH = 3
 USE_REGRESSOR = False
-ADD_NUMERICAL = False
+ADD_NUMERICAL = True
 
 def get_financial_features(raw_financial_features):
     fin_feat=np.array(raw_financial_features)
@@ -100,8 +100,8 @@ def train_predict(train_text_features, train_numeric_features, train_lables, \
     ml_model = None
     predictions = None
     if(USE_REGRESSOR==False):
-        xgb_classifier = XGBClassifier(max_depth=10) # max_depth=12
-        xgb_classifier.fit(trainDataset, train_bin_lables)
+        xgb_classifier = XGBClassifier(objective='binary:logistic') # , max_depth=10
+        xgb_classifier.fit(trainDataset, train_bin_lables, eval_metric='logloss') # sample_weight=np.abs(train_lables)
         ml_model = xgb_classifier
         # performing predictions on validation dataset
         if len(val_text_features):

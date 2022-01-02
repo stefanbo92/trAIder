@@ -69,8 +69,7 @@ def daily_predict(curr_date, ml_model, countVector, drop_idx, buy_time, stock, n
 
 if __name__ == '__main__':
     print("start training")
-    #hyp_param = [11, 13, "dax", ["cnbc_finance"]]
-    hyp_param = [13, 16, "dax", ["spiegel_schlagzeilen", "investing_economy", "cnn_world", "bbc_world", "cnbc_world"]]
+    hyp_param = [13, 16, "dax", ["cnbc_finance", "investing_world"]]
     # getting train data
     get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
     # train classifier

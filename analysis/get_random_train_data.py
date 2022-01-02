@@ -40,7 +40,7 @@ def get_random_hyperparam():
 
 
 def train_random():
-    best_gain = 0.06
+    best_gain = 0.03
     best_acc = 0.55
     total_accuracy = []
     total_gain = []
@@ -53,11 +53,11 @@ def train_random():
         get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
         # training data and calculate average gain
         gains, accuracy = train_test()
-        #gains_kfold, accuracy_kfold = kfold_train_test(7)
+        gains_kfold, accuracy_kfold = kfold_train_test(7)
         if gains is None: # if no calculations could be performed
             continue
-        #gains=gains+gains_kfold
-        #accuracy=(accuracy+accuracy_kfold)/2.0
+        gains=gains+gains_kfold
+        accuracy=(accuracy+accuracy_kfold)/2.0
         average_gain = np.array(gains).sum()/len(gains)
         total_accuracy.append(accuracy)
         total_gain.append(average_gain)
@@ -80,9 +80,9 @@ def train_random():
         print("----------------------------------------------------------")
 
 
-train_random()
+#train_random()
 
-hyp_param = [13, 16, "dax", ["spiegel_schlagzeilen", "investing_economy", "cnn_world", "bbc_world", "cnbc_world"]]
+hyp_param = [13, 16, "dax", ["cnbc_finance", "investing_world"]]
 # getting train data
 get_train_data(hyp_param[0], hyp_param[1], hyp_param[3], hyp_param[2])
 # training data and calculate average gain
