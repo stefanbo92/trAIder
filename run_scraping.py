@@ -6,31 +6,35 @@ import time
 
 def run_scraping():
 
-    # getting news
-    my_news = scrape_news("bbc_business", "http://feeds.bbci.co.uk/news/business/rss.xml")
-    my_news = scrape_news("bbc_world", "http://feeds.bbci.co.uk/news/world/rss.xml")
-    my_news = scrape_news("cnbc_world", "https://www.cnbc.com/id/100727362/device/rss/rss.html")
-    my_news = scrape_news("cnbc_business", "https://www.cnbc.com/id/10001147/device/rss/rss.html")
-    my_news = scrape_news("cnbc_economy", "https://www.cnbc.com/id/20910258/device/rss/rss.html")
-    my_news = scrape_news("cnbc_finance", "https://www.cnbc.com/id/10000664/device/rss/rss.html")
-    my_news = scrape_news("wsj_world", "https://feeds.a.dj.com/rss/RSSWorldNews.xml")
-    my_news = scrape_news("wsj_markets", "https://feeds.a.dj.com/rss/RSSMarketsMain.xml")
-    my_news = scrape_news("marketwatch_topstories", "http://feeds.marketwatch.com/marketwatch/topstories/")
-    my_news = scrape_news("investing_world", "https://www.investing.com/rss/news_287.rss", False)
-    my_news = scrape_news("investing_economy", "https://www.investing.com/rss/news_14.rss", False)
-    my_news = scrape_news("investing_stock", "https://www.investing.com/rss/news_25.rss", False)
-    my_news = scrape_news("cnn_news", "http://rss.cnn.com/rss/edition.rss", False)
-    my_news = scrape_news("cnn_world", "http://rss.cnn.com/rss/edition_world.rss", False)
-    my_news = scrape_news("cnn_money", "http://rss.cnn.com/rss/money_news_international.rss", False)
-    my_news = scrape_news("faz_wirtschaft", "https://www.faz.net/rss/aktuell/wirtschaft/")
-    my_news = scrape_news("faz_finanzen", "https://www.faz.net/rss/aktuell/finanzen/")
-    my_news = scrape_news("faz_news", "https://www.faz.net/rss/aktuell/")
-    my_news = scrape_news("spiegel_schlagzeilen", "https://www.spiegel.de/schlagzeilen/tops/index.rss")
-    my_news = scrape_news("spiegel_wirtschaft", "https://www.spiegel.de/wirtschaft/unternehmen/index.rss")
-    my_news = scrape_news("welt_wirtschaft", "https://www.welt.de/feeds/section/wirtschaft.rss")
+    try: 
+        # getting news
+        my_news = scrape_news("bbc_business", "http://feeds.bbci.co.uk/news/business/rss.xml")
+        my_news = scrape_news("bbc_world", "http://feeds.bbci.co.uk/news/world/rss.xml")
+        my_news = scrape_news("cnbc_world", "https://www.cnbc.com/id/100727362/device/rss/rss.html")
+        my_news = scrape_news("cnbc_business", "https://www.cnbc.com/id/10001147/device/rss/rss.html")
+        my_news = scrape_news("cnbc_economy", "https://www.cnbc.com/id/20910258/device/rss/rss.html")
+        my_news = scrape_news("cnbc_finance", "https://www.cnbc.com/id/10000664/device/rss/rss.html")
+        my_news = scrape_news("wsj_world", "https://feeds.a.dj.com/rss/RSSWorldNews.xml")
+        my_news = scrape_news("wsj_markets", "https://feeds.a.dj.com/rss/RSSMarketsMain.xml")
+        my_news = scrape_news("marketwatch_topstories", "http://feeds.marketwatch.com/marketwatch/topstories/")
+        my_news = scrape_news("investing_world", "https://www.investing.com/rss/news_287.rss", False)
+        my_news = scrape_news("investing_economy", "https://www.investing.com/rss/news_14.rss", False)
+        my_news = scrape_news("investing_stock", "https://www.investing.com/rss/news_25.rss", False)
+        my_news = scrape_news("cnn_news", "http://rss.cnn.com/rss/edition.rss", False)
+        my_news = scrape_news("cnn_world", "http://rss.cnn.com/rss/edition_world.rss", False)
+        my_news = scrape_news("cnn_money", "http://rss.cnn.com/rss/money_news_international.rss", False)
+        my_news = scrape_news("faz_wirtschaft", "https://www.faz.net/rss/aktuell/wirtschaft/")
+        my_news = scrape_news("faz_finanzen", "https://www.faz.net/rss/aktuell/finanzen/")
+        my_news = scrape_news("faz_news", "https://www.faz.net/rss/aktuell/")
+        my_news = scrape_news("spiegel_schlagzeilen", "https://www.spiegel.de/schlagzeilen/tops/index.rss")
+        my_news = scrape_news("spiegel_wirtschaft", "https://www.spiegel.de/wirtschaft/unternehmen/index.rss")
+        my_news = scrape_news("welt_wirtschaft", "https://www.welt.de/feeds/section/wirtschaft.rss")
 
-    # getting financial data
-    get_index_prices()
+        # getting financial data
+        get_index_prices()
+        
+    except:
+        print("issue during scraping, trying again later")
     
 
 

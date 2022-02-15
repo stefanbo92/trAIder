@@ -4,6 +4,7 @@ import os
 
 def get_daily_bets_str():
     out_str = ""
+    out_arr = []
     # opening daily_bets.txt
     daily_bets = open(os.path.dirname(os.path.abspath(__file__))+"/daily_bets.txt", 'r')
     all_results = []
@@ -11,7 +12,7 @@ def get_daily_bets_str():
         if ("Win" in line):
             line_arr = line.split(" ")
             all_results.append(float(line_arr[3]))
-            out_str += str(all_results[-1]) + "\n"
+            out_arr.append(line_arr[0][:-1] + " -> " + str(all_results[-1]) + "\n")
 
     end_result = 0
     win_cnt = 0
@@ -23,6 +24,12 @@ def get_daily_bets_str():
     play_money = 1000
     lever = 20
     cost = play_money * lever / 10000
+
+    # if there are more than 6 entries, remove old ones
+    if (len(out_arr) > 6):
+        out_arr = out_arr[len(out_arr)-6:]
+        out_arr[0] = "... \n"
+    out_str = out_str.join(out_arr)
 
     out_str += "----------------------------------- \n"
     out_str += "Total days played: " + str(len(all_results)) + "\n"

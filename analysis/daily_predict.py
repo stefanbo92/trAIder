@@ -113,7 +113,7 @@ if __name__ == '__main__':
         if sell_time-int(today.hour) == 0:
             # selling position
             print("selling position")
-            my_xtb.sell_stonks()
+            my_xtb.sell_stonks_save()
             # logging results
             time.sleep(200) # wait until latest prices were written to fill
             all_stock_data = get_stock_prizes()

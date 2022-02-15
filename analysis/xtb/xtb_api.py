@@ -1,15 +1,16 @@
 import sys
-import os
+import time
 path_to_file=__file__[:__file__.find("xtb_api")]
 sys.path.append(path_to_file)
 
 from xAPIConnector import *
 
 # enter your login credentials here
-userId = 12188475
-password = 'xoh18174'
+#userId = 111 # Demo
+userId = 111 # Live
+password = 'xxx'
 STOCK_NAME = "DE30"
-VOLUME = 0.05
+VOLUME = 0.10
 
 
 class MyXTB:
@@ -104,6 +105,16 @@ class MyXTB:
 		# logout
 		self.client.disconnect()
 		self.client = None
+
+	def sell_stonks_save(self):
+		for i in range(10):
+			try:
+				self.sell_stonks()
+				break
+			except:
+				# if there is an error during sell, wait one minute and try again
+				time.sleep(60)
+
 	
 	def test_func(self):
 		self.perform_login()
@@ -130,6 +141,7 @@ class MyXTB:
 #my_xtb.test_func()
 #time.sleep(15)
 #my_xtb.sell_stonks()
+#my_xtb.sell_stonks_save()
 
 print("finished xtb api")
 
