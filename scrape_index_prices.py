@@ -13,14 +13,16 @@ def get_index_price(url):
     page_html = uClient.read()
     uClient.close()
     page_soup = soup(page_html, "html.parser")
-    containers = page_soup.findAll("div", {"class": "quotedataBox"})
-    current_div = str(containers[0])
+    containers = page_soup.findAll("div", {"class": "tab-region__content"})
+    access_idx = 0
+    if(len(containers) > 1):
+        access_idx = 1
+    current_div = str(containers[access_idx])
 
     # price
-    price_pos = current_div.find("mleft-10")
-    end_pos = current_div.find("<", price_pos)
-    price = current_div[price_pos +
-                        10:end_pos].replace(".", "").replace(",", ".").strip()
+    price_pos = current_div.find("PKT")
+    price = current_div[price_pos -
+                        15:price_pos].replace(".", "").replace(",", ".").strip()
     # opening
     opening_pos = current_div.find("<strong>Eröffnung")+86
     end_pos = current_div.find("/", opening_pos)
