@@ -1,7 +1,7 @@
 import os
 import re
 from datetime import datetime
-from urllib.request import urlopen as uReq
+import requests
 from bs4 import BeautifulSoup as soup
 
 
@@ -9,9 +9,9 @@ from bs4 import BeautifulSoup as soup
 def get_index_price(url):
     # getting html of url
     print("getting html of", url)
-    uClient = uReq(url)
-    page_html = uClient.read()
-    uClient.close()
+    session_obj = requests.Session()
+    response = session_obj.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    page_html = response.text
     page_soup = soup(page_html, "html.parser")
     containers = page_soup.findAll("div", {"class": "tab-region__content"})
     access_idx = 0
